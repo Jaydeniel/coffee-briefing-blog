@@ -34,7 +34,7 @@
     }
   });
 
-  // 2) "카페를 준비한다면:" 팁 이름표
+  // 2) 하위 줄 "의미:" 같은 이름표(콜론 앞 글자, 이전 글은 "카페를 준비한다면:")
   body.querySelectorAll('.sec-news li > ul > li').forEach(function (li) {
     var first = li.firstChild;
     if (!first || first.nodeType !== 3) return;

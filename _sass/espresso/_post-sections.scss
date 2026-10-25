@@ -16,7 +16,7 @@
 .sec-news > ul { list-style: none; padding: 0; margin-top: 0; }
 .sec-news > ul > li { padding: var(--space-6) 0; border-bottom: var(--rule-hairline); margin: 0; }
 .sec-news > ul > li + li { margin-top: 0; }
-// "카페를 준비한다면": 상자·색면 없이 들여쓴 한 단락, 이름표는 evergreen 600
+// 소식 아래 "의미:" 줄: 상자·색면 없이 들여쓴 한 단락, 이름표는 evergreen 600
 .sec-news li > ul { list-style: none; padding: 0 0 0 var(--space-6); margin-top: var(--space-3); }
 .sec-news li > ul > li { color: var(--text); font-size: 15px; }
 .tip-label { display: block; font-size: var(--fs-note); font-weight: 600; color: var(--evergreen); margin-bottom: 2px; }
