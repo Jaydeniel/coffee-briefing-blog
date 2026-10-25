@@ -1,0 +1,102 @@
+{
+ "updated": "2026-10-25",
+ "indicators": [
+  {
+   "key": "arabica",
+   "name": "아라비카 원두 선물",
+   "market": "ICE 뉴욕 · 근월물",
+   "unit": "USc/lb",
+   "unit_label": "센트/파운드",
+   "digits": 2,
+   "latest": {
+    "value": 307.45,
+    "as_of": "2026-10-23",
+    "change_d": -1.6,
+    "change_m": 11.66,
+    "change_y": -23.71,
+    "source": "Trading Economics",
+    "source_url": "https://tradingeconomics.com/commodity/coffee"
+   },
+   "history": [
+    [
+     "2026-10-14",
+     296.71
+    ],
+    [
+     "2026-10-15",
+     298.7
+    ],
+    [
+     "2026-10-16",
+     305.55
+    ],
+    [
+     "2026-10-19",
+     313.71
+    ],
+    [
+     "2026-10-20",
+     309.99
+    ],
+    [
+     "2026-10-21",
+     316.66
+    ],
+    [
+     "2026-10-22",
+     311.37
+    ],
+    [
+     "2026-10-23",
+     307.45
+    ]
+   ]
+  },
+  {
+   "key": "robusta",
+   "name": "로부스타 원두 선물",
+   "market": "ICE 런던 · 근월물",
+   "unit": "USD/t",
+   "unit_label": "달러/톤",
+   "digits": 0,
+   "latest": {
+    "value": 3228.0,
+    "as_of": "2026-10-23",
+    "change_d": -1.82,
+    "change_m": null,
+    "change_y": null,
+    "source": "VOV (런던 11월물)",
+    "source_url": "http://vov.vn/thi-truong/gia-ca-phe-hom-nay-2410-gia-ca-phe-robusta-va-arabia-dong-loat-giam-post1344049.vov"
+   },
+   "history": [
+    [
+     "2026-10-23",
+     3228.0
+    ]
+   ]
+  },
+  {
+   "key": "coffee_shops",
+   "name": "국내 커피음료점 수",
+   "market": "국세청 100대 생활업종",
+   "unit": "곳",
+   "unit_label": "곳",
+   "digits": 0,
+   "latest": {
+    "value": 93551.0,
+    "as_of": "2026-04",
+    "change_d": null,
+    "change_m": null,
+    "change_y": -1.8,
+    "source": "세계일보 (국세청 국세통계포털)",
+    "source_url": "https://www.segye.com/newsView/20261009501247"
+   },
+   "history": [
+    [
+     "2026-04",
+     93551.0
+    ]
+   ]
+  }
+ ]
+}
