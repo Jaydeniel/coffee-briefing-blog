@@ -1,32 +1,52 @@
-{%- comment -%} 홈 대시보드 = GlanceRow (Annual Report). 데이터: _data/metrics.json (private 저장소 blog/push_metrics.py가 매일 갱신) {%- endcomment -%}
+{%- comment -%}
+  홈 "오늘의 커피 지표" (결정 0021·0023). 커피 소비 트렌드 대시보드 아티팩트의 지표를 카드로, 거시 / 국내 커피 산업 두 묶음.
+  데이터: _data/metrics.json v2 (private 저장소 blog/push_metrics.py가 매일 만든다. 손으로 고치지 않는다)
+{%- endcomment -%}
 {%- assign m = site.data.metrics -%}
-{%- if m and m.indicators.size > 0 -%}
+{%- if m and m.groups -%}
 <section class="dash" aria-labelledby="dash-title">
   <div class="dash-head">
     <h2 id="dash-title">오늘의 커피 지표</h2>
     <p class="dash-updated">갱신 <time datetime="{{ m.updated }}">{{ m.updated | replace: '-', '.' }}</time></p>
   </div>
-  {%- for ind in m.indicators -%}
-  {%- assign L = ind.latest -%}
-  <div class="glance-row" data-key="{{ ind.key }}" data-as-of="{{ L.as_of }}" data-history='{{ ind.history | jsonify }}'>
-    <p class="glance-fig">
-      {%- if ind.digits == 0 -%}{%- assign v = L.value | round -%}{%- else -%}{%- assign v = L.value | round: ind.digits -%}{%- endif -%}
-      <span class="num" data-digits="{{ ind.digits }}">{{ v }}</span><span class="unit">{{ ind.unit_label }}</span>
-    </p>
-    <div class="glance-lab">
-      <p class="glance-name">{{ ind.name }}</p>
-      <p class="glance-meta">{{ ind.market }} · 기준 {{ L.as_of | replace: '-', '.' }} · <a href="{{ L.source_url }}" target="_blank" rel="noopener">{{ L.source }}</a><span class="glance-stale" hidden> · 갱신 지연</span></p>
+  {%- for g in m.groups -%}
+  {%- if g.cards.size > 0 %}
+  <div class="dash-group" aria-labelledby="dash-{{ g.key }}">
+    <div class="dash-group-head">
+      <h3 id="dash-{{ g.key }}">{{ g.title }}</h3>
+      <p class="note">{{ g.subtitle }}</p>
     </div>
-    {%- assign main = L.change_d -%}{%- assign main_label = '전일 대비' -%}
-    {%- if main == nil -%}{%- assign main = L.change_y -%}{%- assign main_label = '전년 대비' -%}{%- endif -%}
-    <p class="glance-chg">
-      {%- if main != nil -%}{% if main > 0 %}+{% elsif main < 0 %}−{% endif %}{{ main | abs }}% {{ main_label }}{%- endif -%}
-      {%- if L.change_d != nil and L.change_m != nil %}<small>{% if L.change_m > 0 %}+{% elsif L.change_m < 0 %}−{% endif %}{{ L.change_m | abs }}% 한 달{% if L.change_y != nil %} · {% if L.change_y > 0 %}+{% elsif L.change_y < 0 %}−{% endif %}{{ L.change_y | abs }}% 1년{% endif %}</small>{%- endif -%}
-    </p>
-    <div class="glance-spark" aria-hidden="true"></div>
+    <div class="dash-cards">
+      {%- for c in g.cards -%}
+      <article class="dash-card" data-key="{{ c.key }}" data-cadence="{{ c.cadence }}" data-as-of="{{ c.as_of }}" data-history='{{ c.history | jsonify }}'>
+        <header>
+          <h4>{{ c.name }}</h4>
+          <p class="dash-market">{{ c.market }}</p>
+        </header>
+        <p class="dash-value">
+          {%- if c.digits == 0 -%}{%- assign v = c.value | round -%}{%- else -%}{%- assign v = c.value | round: c.digits -%}{%- endif -%}
+          <span class="num" data-digits="{{ c.digits }}">{{ v }}</span><span class="unit">{{ c.unit_label }}</span>
+        </p>
+        {%- if c.changes.size > 0 %}
+        <p class="dash-chg">
+          {%- for x in c.changes -%}<span{% if forloop.first %} class="main"{% endif %}>{{ x.text }} {{ x.label }}</span>{%- endfor -%}
+        </p>
+        {%- endif %}
+        {%- if c.extra %}<p class="dash-extra">{{ c.extra }}</p>{% endif %}
+        <div class="dash-spark" aria-hidden="true"></div>
+        <footer>
+          <span>{{ c.period }}</span>
+          <a href="{{ c.source_url }}" target="_blank" rel="noopener">{{ c.source }}</a>
+          {%- if c.note %}<span class="dash-cnote">{{ c.note }}</span>{% endif %}
+          <span class="dash-stale" hidden>갱신 지연</span>
+        </footer>
+      </article>
+      {%- endfor -%}
+    </div>
   </div>
-  {%- endfor -%}
-  <p class="dash-note">시세는 각 출처가 밝힌 기준일의 값입니다. 막대는 최근 기록 다섯 개, 마지막이 기준일 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
+  {%- endif -%}
+  {%- endfor %}
+  <p class="dash-note">각 출처가 밝힌 기준 시점의 값입니다. 연·월 통계는 발표가 늦어 기준 시점이 서로 다릅니다. 막대는 최근 기록(최대 5개), 마지막이 기준 시점 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
 </section>
 <script src="{{ '/assets/js/dashboard.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif -%}
