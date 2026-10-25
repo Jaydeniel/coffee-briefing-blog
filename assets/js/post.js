@@ -68,4 +68,43 @@
     li.appendChild(rest);
     li.classList.add('has-date');
   });
+
+  // 4) 링크 복사 (벤치마킹 1단계)
+  document.querySelectorAll('.copy-link').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = btn.getAttribute('data-url') || location.href;
+      var done = function () {
+        var old = btn.textContent;
+        btn.textContent = '복사했습니다';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = old; btn.classList.remove('copied'); }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { window.prompt('링크를 복사하세요', url); });
+      } else {
+        window.prompt('링크를 복사하세요', url);
+      }
+    });
+  });
+
+  // 5) 섹션 바로가기: 지금 읽는 섹션 표시
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.post-toc a'));
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    var byId = {};
+    tocLinks.forEach(function (a) { byId[decodeURIComponent(a.getAttribute('href').slice(1))] = a; });
+    var current = null;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var id = e.target.id;
+        if (current) current.classList.remove('is-current');
+        current = byId[id];
+        if (current) current.classList.add('is-current');
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var h = document.getElementById(id);
+      if (h) obs.observe(h);
+    });
+  }
 })();

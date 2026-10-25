@@ -2,26 +2,47 @@
 layout: default
 ---
 {%- comment -%}
-  2단계 구성 요소 (DESIGN.md): 본문을 <h2> 단위로 잘라 섹션 종류에 맞는 틀로 감싼다.
-  - 오늘의-한-줄 → sec-summary (한 줄 카드)
-  - 오늘의-기초-지식-* → sec-basics (기초 지식 상자, 제목의 "오늘의 기초 지식: "은 위 표시로 옮김)
-  - 다가오는-일정 → sec-schedule (일정 목록)
-  - 그 밖 → sec-news (소식)
-  <hr /> 뒤는 글 끝 안내 문구로 따로 둔다. 초안 형식(blog-draft 스킬)은 그대로다.
+  글 틀 (DESIGN.md). 초안 형식(blog-draft 스킬)은 그대로 두고 블로그 쪽에서만 꾸민다.
+  - 본문을 <h2> 단위로 잘라 섹션 종류를 고른다: 오늘의-한-줄 → summary, 오늘의-기초-지식-* → basics, 다가오는-일정 → schedule, 그 밖 → news
+  - <hr /> 뒤는 글 끝 노트
+  - 벤치마킹 1단계(브런치·티스토리): 날짜 숫자 커버, 연재 번호, 읽는 시간, 섹션 바로가기, 키워드, 링크 복사
 {%- endcomment -%}
 {%- assign body_parts = content | split: '<hr />' -%}
 {%- assign chunks = body_parts[0] | split: '<h2 ' -%}
+{%- assign series_no = 0 -%}
+{%- for p in site.posts -%}{%- if p.url == page.url -%}{%- assign series_no = site.posts.size | minus: forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- assign char_count = content | strip_html | strip_newlines | size -%}
+{%- assign read_min = char_count | divided_by: 500 | plus: 1 -%}
 <article class="post">
   <header class="post-header">
-    <p class="running-header"><span>커피 시장 브리핑 {{ page.date | date: "%Y" }}</span><b>아침 브리핑</b></p>
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-      {%- if page.concept %}<span>오늘의 기초 지식 <b>{{ page.concept }}</b></span>{% endif %}
-      {%- if page.stage %}{% include stage-badge.html stage=page.stage %}{% endif %}
-      {%- for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor -%}
-    </p>
+    <div class="post-header-text">
+      <p class="running-header"><span>커피 시장 브리핑 {{ page.date | date: "%Y" }}</span><b>아침 브리핑 #{{ series_no }}</b></p>
+      <h1 class="post-title">{{ page.title }}</h1>
+      <p class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+        <span>읽는 시간 {{ read_min }}분</span>
+        {%- if page.concept %}<span>오늘의 기초 지식 <b>{{ page.concept }}</b></span>{% endif %}
+        {%- if page.stage %}{% include stage-badge.html stage=page.stage %}{% endif %}
+        <button type="button" class="copy-link" data-url="{{ page.url | absolute_url }}">링크 복사</button>
+      </p>
+    </div>
+    <p class="post-date-mark" aria-hidden="true">{{ page.date | date: "%m.%d" }}</p>
   </header>
+
+  {%- comment -%} 섹션 바로가기: 본문 h2의 id와 글자를 그대로 쓴다 {%- endcomment -%}
+  {%- if chunks.size > 2 %}
+  <nav class="post-toc" aria-label="이 글의 섹션">
+    <p class="toc-label">이 글에서</p>
+    <ol>
+      {%- for c in chunks offset:1 -%}
+        {%- assign id_parts = c | split: '"' -%}
+        {%- assign text = c | split: '>' | slice: 1 | first | split: '</h2' | first -%}
+        {%- assign text = text | replace: '오늘의 기초 지식: ', '기초 지식 · ' -%}
+        <li><a href="#{{ id_parts[1] }}">{{ text }}</a></li>
+      {%- endfor -%}
+    </ol>
+  </nav>
+  {%- endif %}
 
   <div class="prose post-body">
     <div class="post-intro">{{ chunks[0] }}</div>
@@ -55,6 +76,18 @@ layout: default
     <div class="post-disclaimer">{% for p in body_parts offset:1 %}{{ p }}{% endfor %}</div>
     {%- endif %}
   </div>
+
+  <footer class="post-end">
+    {%- if page.tags.size > 0 %}
+    <div class="post-keywords">
+      <p class="label">키워드</p>
+      <ul>
+        {%- for t in page.tags %}<li><a href="{{ '/keywords/' | relative_url }}#{{ t | slugify: 'raw' }}">{{ t }}</a></li>{% endfor -%}
+      </ul>
+    </div>
+    {%- endif %}
+    <p class="post-share"><button type="button" class="copy-link" data-url="{{ page.url | absolute_url }}">링크 복사</button></p>
+  </footer>
 
   {%- if page.previous or page.next %}
   <nav class="post-nav" aria-label="이전·다음 브리핑">
