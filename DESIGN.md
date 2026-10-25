@@ -37,7 +37,8 @@
 | (목록) | 글 목록: 카드 대신 rule로 나눈 줄(날짜 · 세리프 제목 · 기초 지식) | `_layouts/home.html` |
 | (브런치 커버, 본인 요청) | 글 머리 커버 사진: 화면 폭을 채운 사진 위에 러닝 헤더·제목·정보를 흰 글자로, 아래로 짙어지는 ink 막, 오른쪽 아래 사진 출처. 사진은 front matter `cover`(+`cover_credit`·`cover_credit_url`·`cover_position`) 우선, 없으면 `_data/covers.yml`에서 날짜로 순환 | `_layouts/post.html`, `_post-extras.scss`, `_data/covers.yml` |
 | PageFurniture 응용 | 러닝 헤더 "아침 브리핑 #N"(연재 번호), 글 머리 "읽는 시간 N분"(본문 500자/분) | `_layouts/post.html` |
-| (벤치마킹) | 섹션 바로가기: 머리 아래 한 줄 목차, 1240px 이상은 왼쪽 여백 고정 + 읽는 섹션 evergreen | `_layouts/post.html`, `_post-extras.scss`, `post.js` |
+| (벤치마킹) | 섹션 바로가기: 머리 아래 한 줄 목차, 1240px 이상은 왼쪽 여백 고정 + 읽는 섹션 evergreen (커버를 지난 뒤에만) | `_layouts/post.html`, `_post-extras.scss`, `post.js` |
+| (티스토리 모바일, 본인 요청) | 1240px 미만 떠 있는 "목차" 버튼(오른쪽 아래, ink 테두리, 커버 지난 뒤) → 아래에서 올라오는 섹션 목록(배경 어둡게, 스크롤 잠금, Esc·배경·닫기로 닫힘, 열 때 현재 섹션 표시) | `post.js`(버튼·목록을 스크립트로 생성), `_post-extras.scss` |
 | (벤치마킹) | 키워드: 글 끝 키워드 줄 → `/keywords/` 모아 보기(태그별 글 목록) | `keywords.md`, `_post-extras.scss` |
 | (벤치마킹) | 링크 복사: 글자 버튼(클립보드 → execCommand → 입력창) | `post.js` |
 

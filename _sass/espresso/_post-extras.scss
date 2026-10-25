@@ -111,3 +111,6 @@ html.sheet-open { overflow: hidden; }
 @media (min-width: 1240px) {
   .toc-fab, .toc-sheet { display: none !important; }
 }
+
+// 기초 지식은 제목 위 표시(오늘의 기초 지식 · 단계)까지 보이게 이동 위치를 더 내린다
+.post-body .basics-left h2 { scroll-margin-top: 120px; }
