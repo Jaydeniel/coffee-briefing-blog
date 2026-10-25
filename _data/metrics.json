@@ -1,101 +1,446 @@
 {
+ "v": 2,
  "updated": "2026-10-25",
- "indicators": [
+ "groups": [
   {
-   "key": "arabica",
-   "name": "아라비카 원두 선물",
-   "market": "ICE 뉴욕 · 근월물",
-   "unit": "USc/lb",
-   "unit_label": "센트/파운드",
-   "digits": 2,
-   "latest": {
-    "value": 307.45,
-    "as_of": "2026-10-23",
-    "change_d": -1.6,
-    "change_m": 11.66,
-    "change_y": -23.71,
-    "source": "Trading Economics",
-    "source_url": "https://tradingeconomics.com/commodity/coffee"
-   },
-   "history": [
-    [
-     "2026-10-14",
-     296.71
-    ],
-    [
-     "2026-10-15",
-     298.7
-    ],
-    [
-     "2026-10-16",
-     305.55
-    ],
-    [
-     "2026-10-19",
-     313.71
-    ],
-    [
-     "2026-10-20",
-     309.99
-    ],
-    [
-     "2026-10-21",
-     316.66
-    ],
-    [
-     "2026-10-22",
-     311.37
-    ],
-    [
-     "2026-10-23",
-     307.45
-    ]
+   "key": "macro",
+   "title": "거시 지표",
+   "subtitle": "세계 원두 가격과 수급",
+   "cards": [
+    {
+     "key": "arabica",
+     "name": "아라비카 원두 선물",
+     "market": "ICE 뉴욕 · 근월물",
+     "value": 307.45,
+     "digits": 2,
+     "unit_label": "센트/파운드",
+     "as_of": "2026-10-23",
+     "period": "2026.10.23",
+     "cadence": "daily",
+     "changes": [
+      {
+       "text": "−1.6%",
+       "label": "전일 대비"
+      },
+      {
+       "text": "+11.66%",
+       "label": "한 달"
+      },
+      {
+       "text": "−23.71%",
+       "label": "1년"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "Trading Economics",
+     "source_url": "https://tradingeconomics.com/commodity/coffee",
+     "history": [
+      [
+       "2026-10-19",
+       313.71
+      ],
+      [
+       "2026-10-20",
+       309.99
+      ],
+      [
+       "2026-10-21",
+       316.66
+      ],
+      [
+       "2026-10-22",
+       311.37
+      ],
+      [
+       "2026-10-23",
+       307.45
+      ]
+     ]
+    },
+    {
+     "key": "robusta",
+     "name": "로부스타 원두 선물",
+     "market": "ICE 런던 · 근월물",
+     "value": 3228.0,
+     "digits": 0,
+     "unit_label": "달러/톤",
+     "as_of": "2026-10-23",
+     "period": "2026.10.23",
+     "cadence": "daily",
+     "changes": [
+      {
+       "text": "−1.82%",
+       "label": "전일 대비"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "VOV (런던 11월물)",
+     "source_url": "http://vov.vn/thi-truong/gia-ca-phe-hom-nay-2410-gia-ca-phe-robusta-va-arabia-dong-loat-giam-post1344049.vov",
+     "history": [
+      [
+       "2026-10-23",
+       3228.0
+      ]
+     ]
+    },
+    {
+     "key": "ico_icip",
+     "name": "ICO 복합지표가격",
+     "market": "월평균 · 아라비카+로부스타",
+     "value": 263.74,
+     "digits": 2,
+     "unit_label": "센트/파운드",
+     "as_of": "2026-10",
+     "period": "2026.10 (22일까지)",
+     "cadence": "monthly",
+     "changes": [
+      {
+       "text": "+0.6%",
+       "label": "전월 대비"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "ICO 데이터 포털",
+     "source_url": "https://data.ico.org/overview",
+     "history": [
+      [
+       "2026-06",
+       248.9
+      ],
+      [
+       "2026-07",
+       287.7
+      ],
+      [
+       "2026-08",
+       287.29
+      ],
+      [
+       "2026-09",
+       262.29
+      ],
+      [
+       "2026-10",
+       263.74
+      ]
+     ]
+    },
+    {
+     "key": "world_consumption",
+     "name": "세계 커피 소비량",
+     "market": "ICO · 커피연도 10~9월",
+     "value": 180.627,
+     "digits": 1,
+     "unit_label": "백만 백(60kg)",
+     "as_of": "2025",
+     "period": "2025/26 추정",
+     "cadence": "yearly",
+     "changes": [
+      {
+       "text": "−0.8%",
+       "label": "전년 대비"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "ICO",
+     "source_url": "https://data.ico.org/overview",
+     "history": [
+      [
+       "2021/22",
+       176.847
+      ],
+      [
+       "2022/23",
+       173.727
+      ],
+      [
+       "2023/24",
+       174.631
+      ],
+      [
+       "2024/25",
+       182.158
+      ],
+      [
+       "2025/26",
+       180.627
+      ]
+     ]
+    },
+    {
+     "key": "world_production",
+     "name": "세계 커피 생산량",
+     "market": "ICO · 커피연도 10~9월",
+     "value": 183.618,
+     "digits": 1,
+     "unit_label": "백만 백(60kg)",
+     "as_of": "2025",
+     "period": "2025/26 추정",
+     "cadence": "yearly",
+     "changes": [
+      {
+       "text": "+4.4%",
+       "label": "전년 대비"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "ICO",
+     "source_url": "https://data.ico.org/overview",
+     "history": [
+      [
+       "2021/22",
+       168.367
+      ],
+      [
+       "2022/23",
+       170.006
+      ],
+      [
+       "2023/24",
+       171.607
+      ],
+      [
+       "2024/25",
+       175.949
+      ],
+      [
+       "2025/26",
+       183.618
+      ]
+     ]
+    }
    ]
   },
   {
-   "key": "robusta",
-   "name": "로부스타 원두 선물",
-   "market": "ICE 런던 · 근월물",
-   "unit": "USD/t",
-   "unit_label": "달러/톤",
-   "digits": 0,
-   "latest": {
-    "value": 3228.0,
-    "as_of": "2026-10-23",
-    "change_d": -1.82,
-    "change_m": null,
-    "change_y": null,
-    "source": "VOV (런던 11월물)",
-    "source_url": "http://vov.vn/thi-truong/gia-ca-phe-hom-nay-2410-gia-ca-phe-robusta-va-arabia-dong-loat-giam-post1344049.vov"
-   },
-   "history": [
-    [
-     "2026-10-23",
-     3228.0
-    ]
-   ]
-  },
-  {
-   "key": "coffee_shops",
-   "name": "국내 커피음료점 수",
-   "market": "국세청 100대 생활업종",
-   "unit": "곳",
-   "unit_label": "곳",
-   "digits": 0,
-   "latest": {
-    "value": 93551.0,
-    "as_of": "2026-04",
-    "change_d": null,
-    "change_m": null,
-    "change_y": -1.8,
-    "source": "세계일보 (국세청 국세통계포털)",
-    "source_url": "https://www.segye.com/newsView/20261009501247"
-   },
-   "history": [
-    [
-     "2026-04",
-     93551.0
-    ]
+   "key": "domestic",
+   "title": "국내 커피 산업",
+   "subtitle": "시장 규모·점포·소비",
+   "cards": [
+    {
+     "key": "kr_market_size",
+     "name": "국내 커피산업 규모",
+     "market": "커피 제품 국내판매+수출 (카페 매출 제외)",
+     "value": 37359,
+     "digits": 0,
+     "unit_label": "억 원",
+     "as_of": "2024",
+     "period": "2024년",
+     "cadence": "yearly",
+     "changes": [
+      {
+       "text": "+35.6%",
+       "label": "2018년 대비"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "농식품부·농경연",
+     "source_url": "https://eiec.kdi.re.kr/policy/materialView.do?num=285284",
+     "history": [
+      [
+       "2018",
+       27547
+      ],
+      [
+       "2024",
+       37359
+      ]
+     ]
+    },
+    {
+     "key": "coffee_shops",
+     "name": "전국 커피음료점",
+     "market": "국세청 100대 생활업종 · 사업자 수",
+     "value": 93581,
+     "digits": 0,
+     "unit_label": "곳",
+     "as_of": "2026-08",
+     "period": "2026.08",
+     "cadence": "monthly_lagged",
+     "changes": [
+      {
+       "text": "−1.4%",
+       "label": "전년 동월 대비"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "국세청 (한국경제 보도)",
+     "source_url": "https://www.hankyung.com/article/202610216061i",
+     "history": [
+      [
+       "2025-04",
+       95250
+      ],
+      [
+       "2025-09",
+       94853
+      ],
+      [
+       "2025-12",
+       93356
+      ],
+      [
+       "2026-04",
+       93551
+      ],
+      [
+       "2026-08",
+       93581
+      ]
+     ]
+    },
+    {
+     "key": "kr_per_capita",
+     "name": "1인당 커피 소비량",
+     "market": "성인 1인 · 연간",
+     "value": 416,
+     "digits": 0,
+     "unit_label": "잔",
+     "as_of": "2024",
+     "period": "2024년",
+     "cadence": "yearly",
+     "changes": [
+      {
+       "text": "+2.7%",
+       "label": "2023년 대비"
+      }
+     ],
+     "extra": null,
+     "note": "유로모니터 추정치 인용 보도",
+     "source": "유로모니터 (보도)",
+     "source_url": "https://www.koreabizreview.com/articles/kbr-analysis-kbr-special-reports-416-2026-20260813-4qn3",
+     "history": [
+      [
+       "2016",
+       377
+      ],
+      [
+       "2018",
+       363
+      ],
+      [
+       "2020",
+       367
+      ],
+      [
+       "2023",
+       405
+      ],
+      [
+       "2024",
+       416
+      ]
+     ]
+    },
+    {
+     "key": "kr_imports",
+     "name": "커피 수입량",
+     "market": "생두+원두 (HS 0901)",
+     "value": 201294,
+     "digits": 0,
+     "unit_label": "톤",
+     "as_of": "2025",
+     "period": "2025년",
+     "cadence": "yearly",
+     "changes": [
+      {
+       "text": "−0.3%",
+       "label": "전년 대비"
+      }
+     ],
+     "extra": "수입액 17.0억 달러 (+36.7%)",
+     "note": "관세청 보고치(UN Comtrade)",
+     "source": "UN Comtrade",
+     "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&period=2024&cmdCode=0901&flowCode=M&partnerCode=0",
+     "history": [
+      [
+       "2021",
+       189502
+      ],
+      [
+       "2022",
+       205065
+      ],
+      [
+       "2023",
+       192623
+      ],
+      [
+       "2024",
+       201924
+      ],
+      [
+       "2025",
+       201294
+      ]
+     ]
+    },
+    {
+     "key": "survival_5y",
+     "name": "커피음료점 5년 생존율",
+     "market": "국세청 100대 생활업종",
+     "value": 34.6,
+     "digits": 1,
+     "unit_label": "%",
+     "as_of": "2023",
+     "period": "2023년 기준",
+     "cadence": "yearly",
+     "changes": [],
+     "extra": "생활업종 전체 39.6% · 1년 83.5% · 3년 53.2%",
+     "note": null,
+     "source": "국세청 (보도)",
+     "source_url": "https://www.foodbank.co.kr/news/articleView.html?idxno=66315",
+     "history": []
+    },
+    {
+     "key": "franchise_close",
+     "name": "커피 가맹점 폐점률",
+     "market": "공정위 가맹사업 현황 통계",
+     "value": 9.3,
+     "digits": 1,
+     "unit_label": "%",
+     "as_of": "2024",
+     "period": "2024년",
+     "cadence": "yearly",
+     "changes": [
+      {
+       "text": "−0.5%p",
+       "label": "전년 대비"
+      }
+     ],
+     "extra": "개점률 16.5% · 가맹점 29,101곳",
+     "note": null,
+     "source": "공정위",
+     "source_url": "https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=53312",
+     "history": [
+      [
+       "2020",
+       7.9
+      ],
+      [
+       "2021",
+       7.8
+      ],
+      [
+       "2022",
+       9.2
+      ],
+      [
+       "2023",
+       9.8
+      ],
+      [
+       "2024",
+       9.3
+      ]
+     ]
+    }
    ]
   }
  ]
