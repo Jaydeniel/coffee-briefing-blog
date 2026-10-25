@@ -30,7 +30,7 @@
 | 원본 | 블로그 | 파일 |
 |---|---|---|
 | Cover + GiantYear | 홈 표지: 사이트명(evergreen 소형) → "커피 시장 브리핑 [연도]" → 스탠드퍼스트 → gold 키라인 → 아래에서 잘린 거대 연도 | `_layouts/home.html`, `_components.scss` |
-| GlanceRow | 홈 대시보드 "오늘의 커피 지표": 선으로 나눈 줄, 큰 숫자·이름·증감(evergreen+부호)·다섯 막대(mint, 마지막 evergreen) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
+| (본인 요청, 결정 0023) | 홈 "오늘의 커피 지표" 카드: 거시 / 국내 커피 산업 두 묶음, 1px 선으로 나눈 카드(그림자·둥근 모서리 없음), 세리프 큰 숫자, 증감 evergreen+부호, 막대(기록 3개 이상), 기준 시점·출처. 데스크톱 3열·휴대폰 2열. Annual Report의 KPI 카드 그리드 금지에 대한 예외(처음엔 GlanceRow 줄 구성) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
 | PageFurniture | 글 러닝 헤더 "커피 시장 브리핑 [연도]"(muted) + "아침 브리핑"(evergreen 600), 글 끝 노트(muted) | `_layouts/post.html` |
 | PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 오늘의 기초 지식 = 두 단(왼쪽 룰·표시·개념, 오른쪽 문단) | `_post-sections.scss` |
 | SummaryTable | 다가오는 일정, 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |
@@ -41,6 +41,11 @@
 | (티스토리 모바일, 본인 요청) | 1240px 미만 떠 있는 "목차" 버튼(오른쪽 아래, ink 테두리, 커버 지난 뒤) → 아래에서 올라오는 섹션 목록(배경 어둡게, 스크롤 잠금, Esc·배경·닫기로 닫힘, 열 때 현재 섹션 표시) | `post.js`(버튼·목록을 스크립트로 생성), `_post-extras.scss` |
 | (벤치마킹) | 키워드: 글 끝 키워드 줄 → `/keywords/` 모아 보기(태그별 글 목록) | `keywords.md`, `_post-extras.scss` |
 | (벤치마킹) | 링크 복사: 글자 버튼(클립보드 → execCommand → 입력창) | `post.js` |
+
+## 대시보드 데이터
+- `_data/metrics.json` v2는 private 저장소의 `blog/push_metrics.py`가 매일 만든다. **손으로 고치지 않는다.** 시세는 `analysis/metrics/metrics.csv`, 산업 지표는 "커피 소비 트렌드" 대시보드 원본 `analysis/trend/data/`.
+- 형식: `{v:2, updated, groups:[{key, title, subtitle, cards:[{key, name, market, value, digits, unit_label, as_of, period, cadence, changes:[{text,label}], extra, note, source, source_url, history:[[기준, 값]…]}]}]}`
+- 갱신 지연 기준(`dashboard.js`, cadence별): daily 7일, monthly 75일, monthly_lagged(국세청) 270일, yearly 표시 안 함.
 
 ## 웹으로 옮기며 바꾼 것
 1. **한글 서체**: DM 서체에 한글이 없어 세리프는 Noto Serif KR, 산세리프는 Pretendard로 받친다(라틴·숫자는 DM).
