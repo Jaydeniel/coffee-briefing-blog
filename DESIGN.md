@@ -1,60 +1,53 @@
-# Espresso Vibe 디자인 시스템
+# Espresso Vibe 디자인 시스템 — Annual Report 적용판
 
-외부 테마 없이 직접 만든 디자인. GitHub Pages(Jekyll 3.10)가 그대로 빌드한다. 값은 `_sass/espresso/_tokens.scss`에만 두고, 다른 파일은 CSS 변수(`var(--…)`)로만 쓴다.
+2026-10-25부터 블로그 디자인은 claude.ai 아티팩트 **"Annual Report"** 디자인 시스템(https://claude.ai/artifact/TEgpXSgSLx16BFEDf5XoiP)을 따른다. 원본은 "인쇄된 연차보고서를 슬라이드로 옮긴" 시스템이고, 여기서는 웹 블로그에 옮겼다. 원본 규칙이 우선하며, 아래 "웹으로 옮기며 바꾼 것"만 예외다. 값은 `_sass/espresso/_tokens.scss`에만 둔다(원본 토큰 이름 그대로).
 
-## 원칙
-1. **읽기 먼저**: 본문 폭 720px, 줄 간격 1.78, 한국어 줄바꿈은 단어 단위(`keep-all`).
-2. **커피 색은 의미로**: 에스프레소 = 제목·브랜드, 크레마 = 포인트, 밀크 = 바탕.
-3. **창업 단계 색은 Notion과 같게**: 저가 프랜차이즈 주황 · 개인 카페 초록 · 공통 회색.
-4. **장식보다 구조**: 그림자는 카드 하나에만, 테두리는 얇게.
+## 원칙 (원본)
+- 흰 배경(`surface`) 위에 **선과 숫자로만** 구조를 만든다. 그림자·그라디언트·둥근 모서리·어두운 배경·3D·파이 차트 없음.
+- 강조색은 `evergreen` 하나. `gold`는 표지 키라인에만, 텍스트에 쓰지 않는다. 색면은 `surface-tint` 하나(표의 당해 열 음영).
+- 서명은 연도: 표지에 보고 연도를 `evergreen` 거대 세리프로, 가장자리에서 잘리게.
+- 헤드라인·큰 숫자는 DM Serif Display, 본문·레이블·표는 DM Sans. 숫자는 tabular-nums.
+- 증감은 빨강/초록으로 나누지 않는다. `evergreen`과 부호(+, −)로 말한다.
+- 금지: 카드 그리드, 그림자, 그라디언트, 아이콘·클립아트, 대문자 레이블, 가운데 정렬 본문, 어두운 배경.
 
-## 디자인 값 (tokens)
-| 이름 | 값 | 쓰임 |
+## 디자인 값
+| 토큰 | 값 | 쓰임 |
 |---|---|---|
-| `--c-espresso` | #3b2418 | 브랜드, 제목, 강조 |
-| `--c-roast` | #5a3a28 | 보조 강조, hover |
-| `--c-crema` | #c08a56 | 링크 밑줄, 포커스, 마크 |
-| `--c-crema-soft` | #f3e6d6 | 인용·강조 배경 |
-| `--c-milk` | #fbf7f1 | 페이지 바탕 |
-| `--c-paper` | #ffffff | 카드 바탕 |
-| `--c-ink` | #2a211c | 본문 |
-| `--c-muted` | #7a6a5e | 날짜, 보조 |
-| `--c-line` | #e8dccd | 구분선 |
-| `--c-stage-franchise(-bg)` | #c8691c / #fbeadb | 저가 프랜차이즈 |
-| `--c-stage-indie(-bg)` | #2f7d4f / #e3f1e8 | 개인 카페 |
-| `--c-stage-common(-bg)` | #6f665e / #eeeae6 | 공통 |
-| `--c-up(-bg)` / `--c-down(-bg)` | #c2412d / #2d64b3 | 지표 오름·내림 (국내 시세 표기 관례) |
+| `--surface` | #ffffff | 모든 배경 |
+| `--surface-tint` | #eef4f1 | 표 당해 열 음영(유일한 색면), 인라인 코드 |
+| `--ink` | #0e2a22 | 헤드라인, 큰 숫자, 굵은 룰 |
+| `--text` | #33443e | 본문 |
+| `--muted` | #6e7f78 | 노트, 출처, 러닝 헤더, 날짜 |
+| `--evergreen` | #0e4d3c | 유일한 강조: 거대 연도, 증감, 섹션명, 창업 단계, 당해 막대 |
+| `--chart-2` / `--mint` | #4f9c7f / #a8d5c2 | 차트 2·3번, 이전 기록 막대 (텍스트 금지) |
+| `--gold` | #c9a227 | 표지 72px 키라인만 |
+| `--rule` | #cfded7 | 1px 행 구분선 |
+| 선 | hairline 1px rule · strong 2px ink · accent 3px evergreen · keyline 4px gold | 그림자 대신 쓰는 유일한 구분 |
 
-- 글꼴: Pretendard Variable (jsDelivr, v1.3.9 dynamic subset). 기본 17px(모바일 16px).
-- 간격: 4px 배수 `--sp-1`~`--sp-8` (4·8·12·16·24·32·48·64).
-- 형태: 둥글기 6 / 12 / pill, 카드 그림자 1종.
+간격 4·8·12·16·24·32·48·64px(`--space-*`, `--page-margin`), 둥근 모서리 0.
 
-## 구성 요소
-| 이름 | 파일 | 단계 |
+## 구성 요소 (원본 → 블로그)
+| 원본 | 블로그 | 파일 |
 |---|---|---|
-| 머리글(브랜드 마크 + 메뉴), 바닥글 | `_includes/header.html`, `footer.html` | 1 |
-| 첫 화면 소개, 글 목록 카드 | `_layouts/home.html` | 1 |
-| 글 머리(날짜·제목·기초 지식 칩·단계·태그), 이전·다음 | `_layouts/post.html` | 1 |
-| 창업 단계 표시 | `_includes/stage-badge.html` | 1 |
-| 오늘의 한 줄 카드 (`.sec-summary`, 짙은 에스프레소 카드) | `_layouts/post.html`, `_sass/espresso/_post-sections.scss` | 2 |
-| 소식 항목·"카페를 준비한다면" 팁 상자 (`.sec-news`, `.tip-label`) | 같음 + `assets/js/post.js` | 2 |
-| 출처 표시 (`.src`: 매체↗ + 날짜 알약) | `assets/js/post.js` | 2 |
-| 기초 지식 상자 (`.sec-basics`: 위 에스프레소 띠, 표시+단계, 개념 이름) | `_layouts/post.html` | 2 |
-| 일정 목록 (`.sec-schedule`, `.sch-date` 날짜 칸) | `assets/js/post.js` | 2 |
-| 글 끝 안내 문구 (`.post-disclaimer`, `<hr />` 뒤) | `_layouts/post.html` | 2 |
-| 홈 대시보드 "오늘의 커피 지표" (`.dash`: 카드·변동 칩·추세 그래프·갱신 지연) | `_includes/dashboard.html`, `_sass/espresso/_dashboard.scss`, `assets/js/dashboard.js`, 데이터 `_data/metrics.json` | 대시보드 |
-| 개념 사전 페이지 (concept·stage 모음) | (예정) | 3 |
-| 다크 모드, 404, 공유 이미지 | (예정) | 4 |
+| Cover + GiantYear | 홈 표지: 사이트명(evergreen 소형) → "커피 시장 브리핑 [연도]" → 스탠드퍼스트 → gold 키라인 → 아래에서 잘린 거대 연도 | `_layouts/home.html`, `_components.scss` |
+| GlanceRow | 홈 대시보드 "오늘의 커피 지표": 선으로 나눈 줄, 큰 숫자·이름·증감(evergreen+부호)·다섯 막대(mint, 마지막 evergreen) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
+| PageFurniture | 글 러닝 헤더 "커피 시장 브리핑 [연도]"(muted) + "아침 브리핑"(evergreen 600), 글 끝 노트(muted) | `_layouts/post.html` |
+| PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 오늘의 기초 지식 = 두 단(왼쪽 룰·표시·개념, 오른쪽 문단) | `_post-sections.scss` |
+| SummaryTable | 다가오는 일정, 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |
+| (목록) | 글 목록: 카드 대신 rule로 나눈 줄(날짜 · 세리프 제목 · 기초 지식) | `_layouts/home.html` |
 
-## 글이 지켜야 할 형식
-초안은 private 저장소의 `blog-draft` 스킬이 만든다. front matter `concept`(개념 이름)와 `stage`(저가 프랜차이즈 / 개인 카페 / 공통)가 목록 카드와 글 머리의 표시가 된다. `##` 섹션 이름(오늘의 한 줄, 국내 커피 시장, 원두·원가, 글로벌 동향, 개인 카페 운영, 오늘의 기초 지식: …, 다가오는 일정)은 2단계 구성 요소가 알아보는 기준이라 바꾸지 않는다.
+## 웹으로 옮기며 바꾼 것
+1. **한글 서체**: DM 서체에 한글이 없어 세리프는 Noto Serif KR, 산세리프는 Pretendard로 받친다(라틴·숫자는 DM).
+2. **크기**: 원본은 인쇄 기준(본문 15px, 노트 10px). 웹 읽기용으로 본문 16px, 노트 12px. 거대 연도는 원본 360~420px(1920 캔버스) 대신 240px(본문 폭 760px에서 글과 겹치지 않게).
+3. **창업 단계 표시**: Notion의 주황·초록·회색 대신 evergreen 600 글자 하나로(강조색 하나 규칙).
+4. **출처 표시**: 알약 모양 대신 note 크기의 muted 한 줄("매체 · 날짜").
+5. **브랜드 마크 없음**: 원본에 로고가 없어 사이트명 글자만.
+6. 러닝 헤더·노트는 웹에 페이지 번호가 없어 번호는 뺐다.
 
-## 2단계 동작 방식
-- `post.html`이 본문을 `<h2>` 단위로 잘라 id로 섹션 종류를 고른다: `오늘의-한-줄` → 한 줄 카드, `오늘의-기초-지식-*` → 기초 지식 상자(제목의 "오늘의 기초 지식: "은 위 표시로 옮김), `다가오는-일정` → 일정, 나머지 → 소식. `<hr />` 뒤는 안내 문구.
-- `post.js`는 꾸밈만 더한다: "— 링크 · 날짜" → 출처 표시, "카페를 준비한다면:" → 팁 이름표, 일정 첫머리 날짜 → 날짜 칸. **스크립트가 없어도 글은 그대로 읽힌다.**
-- 스타일·스크립트 주소에 빌드 시각(`?v=site.time`)을 붙여 배포 직후 옛 스타일이 캐시로 보이지 않게 한다.
+## 동작 방식 (그대로)
+- `post.html`이 본문을 `<h2>` 단위로 잘라 섹션 종류(한 줄 / 기초 지식 / 일정 / 소식)를 고른다. `post.js`는 출처·팁 이름표·일정 날짜 칸만 더한다(없어도 읽힘).
+- 대시보드 데이터 `_data/metrics.json`은 private 저장소 `blog/push_metrics.py`가 매일 만든다. 손으로 고치지 않는다.
+- 스타일·스크립트 주소에 `?v=site.time`을 붙여 배포 직후 캐시 문제를 막는다.
 
-## 대시보드 데이터
-- `_data/metrics.json`은 private 저장소의 `blog/push_metrics.py`가 매일 만든다. **손으로 고치지 않는다.**
-- 형식: `{updated, indicators:[{key, name, market, unit, unit_label, digits, latest:{value, as_of, change_d, change_m, change_y, source, source_url}, history:[[as_of, value]…]}]}`
-- 갱신 지연 기준(`dashboard.js`): 선물 7일, 국세청 월 통계 270일.
+## 다음 단계
+개념 사전 페이지(SummaryTable 형식), 404, 공유 이미지. 다크 모드는 원본이 어두운 배경을 금지해 만들지 않는다.
