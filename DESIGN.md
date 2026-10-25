@@ -43,7 +43,8 @@
 | (벤치마킹) | 링크 복사: 글자 버튼(클립보드 → execCommand → 입력창) | `post.js` |
 
 ## 대시보드 데이터
-- `_data/metrics.json` v2는 private 저장소의 `blog/push_metrics.py`가 매일 만든다. **손으로 고치지 않는다.** 시세는 `analysis/metrics/metrics.csv`, 산업 지표는 "커피 소비 트렌드" 대시보드 원본 `analysis/trend/data/`.
+- `_data/metrics.json` v2는 private 저장소의 `blog/push_metrics.py`가 매일 만든다. **손으로 고치지 않는다.** 원두 가격은 ICO 데이터 포털 일별 실물 지표(`fetch_ico.py`가 `analysis/metrics/metrics.csv`에 기록, 결정 0026), 산업 지표는 "커피 소비 트렌드" 대시보드 원본 `analysis/trend/data/`.
+- 거시 카드(2026-10-26~): I-CIP · 로부스타 실물 · 브라질 내추럴 실물 · 뉴욕 아라비카 선물(방향 신호) · 세계 소비 · 세계 생산. 실물 지표가 가격 기준이고 선물은 방향만 본다(결정 0025·0026).
 - 형식: `{v:2, updated, groups:[{key, title, subtitle, cards:[{key, name, market, value, digits, unit_label, as_of, period, cadence, changes:[{text,label}], extra, note, source, source_url, history:[[기준, 값]…]}]}]}`
 - 갱신 지연 기준(`dashboard.js`, cadence별): daily 7일, monthly 75일, monthly_lagged(국세청) 270일, yearly 표시 안 함.
 
