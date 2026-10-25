@@ -32,7 +32,8 @@
 .sec-basics { display: grid; grid-template-columns: 2fr 3fr; column-gap: var(--space-12); padding-top: var(--space-6); border-top: var(--rule-strong); }
 .basics-left::before { content: ""; display: block; width: var(--keyline-width); border-top: var(--rule-accent); margin-bottom: var(--space-4); }
 .basics-kicker { margin: 0 0 var(--space-2) !important; font-size: var(--fs-running); color: var(--muted); display: flex; flex-direction: column; gap: var(--space-1); }
-.basics-left h2 { font-size: 30px !important; line-height: 1.2; }
+.basics-left { align-self: start; }
+.basics-left h2 { font-size: 30px !important; line-height: 1.2; margin-top: var(--space-2) !important; }
 .basics-body > * + * { margin-top: var(--space-4); }
 .basics-body p { margin: 0; }
 
