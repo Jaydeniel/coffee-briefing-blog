@@ -1,0 +1,22 @@
+# 공개 블로그 저장소의 루트에 복사해 쓴다 (blog/README.md 참고). GitHub Pages가 Jekyll로 빌드한다.
+title: 커피 시장 브리핑
+description: 매일 아침 커피 시장 소식과 카페 창업 기초 지식 하나를 정리합니다.
+lang: ko
+timezone: Asia/Seoul
+theme: minima
+url: https://jaydeniel.github.io
+baseurl: /coffee-briefing-blog
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+show_excerpts: true
+minima:
+  skin: classic
+header_pages:
+  - about.md
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
