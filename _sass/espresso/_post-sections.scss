@@ -1,89 +1,57 @@
-// 2단계 글 구성 요소: 한 줄 카드 · 소식 · 출처 표시 · 기초 지식 상자 · 일정 목록 · 안내 문구
-.post-body .sec { margin-top: var(--sp-7); }
-.post-body .sec > h2 { margin-top: 0; padding-top: 0; }
+// 글 구성 요소 (Annual Report 규칙으로): 한 줄 = 인용문, 소식 = 선으로 나눈 줄, 기초 지식 = PullQuote 두 단, 일정 = SummaryTable
+.post-body .sec { margin-top: var(--space-12); }
+.post-body .sec > h2 { margin-top: 0; font-size: var(--fs-section); }
+.post-intro blockquote { font-size: var(--fs-label); color: var(--muted); }
 
-// 글머리 소개 문구
-.post-intro blockquote { background: transparent; border-left: 0; padding: 0; color: var(--c-muted); font-size: var(--fs-sm); }
+// 오늘의 한 줄: 짧은 evergreen 룰 아래 세리프 인용문 (어두운 카드 대신)
+.sec-summary { border-top: none; }
+.sec-summary::before { content: ""; display: block; width: var(--keyline-width); border-top: var(--rule-accent); margin-bottom: var(--space-4); }
+.sec-summary > h2 { font-family: var(--font-sans); font-size: var(--fs-running); font-weight: 600; color: var(--evergreen); line-height: 1; margin-bottom: var(--space-3) !important; }
+.sec-summary ul { list-style: none; padding: 0; margin: 0; }
+.sec-summary li { font-family: var(--font-serif); font-size: var(--fs-pull-quote); line-height: 1.4; color: var(--ink); }
+.sec-summary li + li { margin-top: var(--space-3); }
 
-// 섹션 제목: 크레마 막대
-.sec-news > h2, .sec-schedule > h2 {
-  display: flex; align-items: center; gap: var(--sp-3);
-  font-size: var(--fs-h2);
-}
-.sec-news > h2::before, .sec-schedule > h2::before {
-  content: ""; width: 4px; height: 1em; border-radius: 2px; background: var(--c-crema); flex: none;
-}
+// 소식: rule로 나눈 줄
+.sec-news > h2 { padding-bottom: var(--space-3); border-bottom: var(--rule-strong); }
+.sec-news > ul { list-style: none; padding: 0; margin-top: 0; }
+.sec-news > ul > li { padding: var(--space-6) 0; border-bottom: var(--rule-hairline); margin: 0; }
+.sec-news > ul > li + li { margin-top: 0; }
+// "카페를 준비한다면": 상자·색면 없이 들여쓴 한 단락, 이름표는 evergreen 600
+.sec-news li > ul { list-style: none; padding: 0 0 0 var(--space-6); margin-top: var(--space-3); }
+.sec-news li > ul > li { color: var(--text); font-size: 15px; }
+.tip-label { display: block; font-size: var(--fs-note); font-weight: 600; color: var(--evergreen); margin-bottom: 2px; }
 
-// ── 오늘의 한 줄 카드
-.sec-summary {
-  background: var(--c-espresso); color: var(--c-milk);
-  border-radius: var(--radius); padding: var(--sp-5) var(--sp-6);
-  box-shadow: var(--shadow-card);
-}
-.post-body .sec-summary { margin-top: var(--sp-6); }
-.sec-summary > h2 { color: var(--c-crema); font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em; }
-.sec-summary ul { list-style: none; padding: 0; margin: var(--sp-2) 0 0; }
-.sec-summary li { font-size: 1.08rem; font-weight: 500; line-height: 1.7; }
-.sec-summary li + li { margin-top: var(--sp-2); }
-.sec-summary strong, .sec-summary a { color: var(--c-milk); }
+// 출처: note 크기의 muted 글자 한 줄 (알약·아이콘 없음)
+.src { font-size: var(--fs-note); color: var(--muted); white-space: nowrap; margin-left: var(--space-1); }
+.src a { color: var(--muted); text-decoration-color: var(--rule); }
+.src a:hover { color: var(--evergreen); }
+.src time { font-size: inherit; margin-left: var(--space-1); }
+.src time::before { content: "· "; }
 
-// ── 소식 항목
-.sec-news > ul { list-style: none; padding: 0; }
-.sec-news > ul > li { padding-bottom: var(--sp-4); border-bottom: 1px dashed var(--c-line); }
-.sec-news > ul > li:last-child { border-bottom: 0; padding-bottom: 0; }
-.sec-news > ul > li + li { margin-top: var(--sp-4); }
-// "카페를 준비한다면" 팁
-.sec-news li > ul { list-style: none; padding: 0; margin-top: var(--sp-3); }
-.sec-news li > ul > li {
-  background: var(--c-crema-soft); border-radius: var(--radius-sm);
-  padding: var(--sp-3) var(--sp-4); color: var(--c-roast); font-size: 0.94em;
-}
-.sec-news li > ul > li .tip-label { display: block; font-weight: 700; color: var(--c-espresso); font-size: var(--fs-xs); letter-spacing: 0.02em; margin-bottom: 2px; }
+// 오늘의 기초 지식: PullQuote 두 단 (왼쪽 40%: evergreen 룰, 표시, 개념 / 오른쪽: 문단)
+.sec-basics { display: grid; grid-template-columns: 2fr 3fr; column-gap: var(--space-12); padding-top: var(--space-6); border-top: var(--rule-strong); }
+.basics-left::before { content: ""; display: block; width: var(--keyline-width); border-top: var(--rule-accent); margin-bottom: var(--space-4); }
+.basics-kicker { margin: 0 0 var(--space-2) !important; font-size: var(--fs-running); color: var(--muted); display: flex; flex-direction: column; gap: var(--space-1); }
+.basics-left h2 { font-size: 30px !important; line-height: 1.2; }
+.basics-body > * + * { margin-top: var(--space-4); }
+.basics-body p { margin: 0; }
 
-// ── 출처 표시 (post.js가 "— 링크 · 날짜"를 .src로 감싼다. 스크립트가 없으면 일반 링크로 보인다)
-.src {
-  display: inline-flex; align-items: center; gap: 6px; vertical-align: 1px;
-  margin-left: 4px; padding: 1px var(--sp-2) 1px var(--sp-2);
-  border: 1px solid var(--c-line); border-radius: var(--radius-pill); background: var(--c-paper);
-  font-size: var(--fs-xs); line-height: 1.6; white-space: nowrap;
-}
-.src a { text-decoration: none; font-weight: 700; color: var(--c-espresso); }
-.src a::after { content: "↗"; font-weight: 400; margin-left: 2px; color: var(--c-crema); }
-.src a:hover { color: var(--c-crema); }
-.src time { color: var(--c-muted); font-size: inherit; }
-.sec-summary .src { background: transparent; border-color: rgba(251, 247, 241, 0.3); }
-
-// ── 오늘의 기초 지식 상자
-.sec-basics {
-  position: relative;
-  background: var(--c-paper); border: 1px solid var(--c-line); border-radius: var(--radius);
-  padding: var(--sp-5) var(--sp-6); box-shadow: var(--shadow-card);
-  border-top: 4px solid var(--c-espresso);
-}
-.basics-kicker { display: flex; align-items: center; gap: var(--sp-2); margin: 0 0 var(--sp-2) !important; font-size: var(--fs-xs); font-weight: 700; color: var(--c-muted); letter-spacing: 0.04em; }
-.sec-basics > h2 { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--sp-3); }
-.sec-basics p { margin: 0; }
-.sec-basics p + p { margin-top: var(--sp-3); }
-
-// ── 다가오는 일정
-.sec-schedule > ul { list-style: none; padding: 0; }
-.sec-schedule > ul > li {
-  display: grid; grid-template-columns: 88px 1fr; gap: var(--sp-4); align-items: baseline;
-  padding: var(--sp-3) 0; border-bottom: 1px solid var(--c-line);
-}
-.sec-schedule > ul > li + li { margin-top: 0; }
-.sch-date { white-space: nowrap; font-weight: 800; color: var(--c-espresso); font-variant-numeric: tabular-nums; line-height: 1.3; }
-.sch-date small { display: block; font-weight: 500; color: var(--c-muted); font-size: var(--fs-xs); }
-// 스크립트가 없을 때는 날짜가 본문에 그대로 있으므로 한 줄로 둔다
+// 다가오는 일정: SummaryTable처럼 (헤더 아래 ink 2px, 행 1px)
+.sec-schedule > h2 { padding-bottom: var(--space-3); border-bottom: var(--rule-strong); }
+.sec-schedule > ul { list-style: none; padding: 0; margin-top: 0; }
+.sec-schedule > ul > li { display: grid; grid-template-columns: 104px 1fr; gap: var(--space-4); align-items: baseline; padding: var(--space-3) 0; border-bottom: var(--rule-hairline); margin: 0; }
+.sch-date { white-space: nowrap; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.3; }
+.sch-date small { display: block; font-weight: 400; color: var(--muted); font-size: var(--fs-note); }
 .sec-schedule > ul > li:not(.has-date) { display: block; }
 
-// 글 끝 안내 문구
-.post-disclaimer { margin-top: var(--sp-7); padding-top: var(--sp-4); border-top: 1px solid var(--c-line); font-size: var(--fs-sm); color: var(--c-muted); }
-.post-disclaimer p { margin: 0; }
+// 글 끝 노트
+.post-disclaimer { margin-top: var(--space-12); padding-top: var(--space-3); border-top: var(--rule-hairline); font-size: var(--fs-note); color: var(--muted); }
+.post-disclaimer p, .post-disclaimer em { margin: 0; color: var(--muted); font-style: normal; }
 
-@media (max-width: 600px) {
-  .sec-summary, .sec-basics { padding: var(--sp-4); }
-  .sec-basics > h2 { font-size: 1.35rem; }
-  .sec-schedule > ul > li { grid-template-columns: 84px 1fr; gap: var(--sp-3); }
+@media (max-width: 680px) {
+  .sec-basics { grid-template-columns: 1fr; }
+  .basics-body { margin-top: var(--space-4); }
+  .sec-schedule > ul > li { grid-template-columns: 88px 1fr; gap: var(--space-3); }
   .src { white-space: normal; }
+  .sec-summary li { font-size: 21px; }
 }

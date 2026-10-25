@@ -13,15 +13,14 @@ layout: default
 {%- assign chunks = body_parts[0] | split: '<h2 ' -%}
 <article class="post">
   <header class="post-header">
-    <p class="eyebrow"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time></p>
+    <p class="running-header"><span>커피 시장 브리핑 {{ page.date | date: "%Y" }}</span><b>아침 브리핑</b></p>
     <h1 class="post-title">{{ page.title }}</h1>
-    {%- if page.concept or page.tags.size > 0 %}
-    <div class="post-meta">
-      {%- if page.concept %}<span class="concept-chip">기초 지식 · {{ page.concept }}</span>{% endif %}
-      {% include stage-badge.html stage=page.stage %}
-      {%- for t in page.tags %}<span class="tag">#{{ t }}</span>{% endfor -%}
-    </div>
-    {%- endif %}
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+      {%- if page.concept %}<span>오늘의 기초 지식 <b>{{ page.concept }}</b></span>{% endif %}
+      {%- if page.stage %}{% include stage-badge.html stage=page.stage %}{% endif %}
+      {%- for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor -%}
+    </p>
   </header>
 
   <div class="prose post-body">
@@ -40,10 +39,16 @@ layout: default
         {%- assign kind = 'schedule' -%}
       {%- endif %}
     <section class="sec sec-{{ kind }}" aria-labelledby="{{ sid }}">
-      {%- if kind == 'basics' %}
-      <p class="basics-kicker"><span>오늘의 기초 지식</span>{% include stage-badge.html stage=page.stage %}</p>
-      {%- endif %}
+      {%- if kind == 'basics' -%}
+        {%- assign hb = html | split: '</h2>' %}
+      <div class="basics-left">
+        <p class="basics-kicker"><span>오늘의 기초 지식</span>{% include stage-badge.html stage=page.stage %}</p>
+        <h2 {{ hb[0] }}</h2>
+      </div>
+      <div class="basics-body">{% for part in hb offset:1 %}{{ part }}{% unless forloop.last %}</h2>{% endunless %}{% endfor %}</div>
+      {%- else %}
       <h2 {{ html }}
+      {%- endif %}
     </section>
     {%- endfor %}
     {%- if body_parts.size > 1 %}

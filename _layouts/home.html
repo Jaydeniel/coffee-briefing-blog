@@ -1,30 +1,39 @@
 ---
 layout: default
 ---
-<section class="hero">
-  <p class="eyebrow">매일 아침 커피 시장 브리핑</p>
-  <h1 class="hero-title">{{ site.title }}</h1>
-  <div class="hero-lead">{{ content }}</div>
+{%- assign year = site.time | date: '%Y' -%}
+<section class="cover">
+  <div class="cover-text">
+    <p class="cover-co">{{ site.title }}</p>
+    <h1 class="cover-title">커피 시장 브리핑 {{ year }}</h1>
+    <div class="cover-stand">{{ content }}</div>
+    <div class="keyline" aria-hidden="true"></div>
+  </div>
+  <p class="giant-year" aria-hidden="true">{{ year }}</p>
 </section>
 
 {% include dashboard.html %}
 
-<section class="post-list" aria-label="브리핑 목록">
-  {%- for post in site.posts -%}
-  <article class="post-card">
-    <a class="post-card-link" href="{{ post.url | relative_url }}">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-      <h2 class="post-card-title">{{ post.title }}</h2>
-      {%- if post.concept %}
-      <p class="post-card-concept">
-        <span class="concept-label">오늘의 기초 지식</span>
-        <span class="concept-name">{{ post.concept }}</span>
-        {% include stage-badge.html stage=post.stage %}
-      </p>
-      {%- endif %}
-    </a>
-  </article>
-  {%- else -%}
-  <p class="empty">아직 올라온 브리핑이 없습니다.</p>
-  {%- endfor -%}
+<section aria-labelledby="list-title">
+  <div class="post-list-head">
+    <h2 id="list-title">브리핑</h2>
+    <p class="note">{{ site.posts.size }}편</p>
+  </div>
+  <div class="post-list">
+    {%- for post in site.posts -%}
+    <article class="post-row">
+      <a class="post-row-link" href="{{ post.url | relative_url }}">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        <div>
+          <h3 class="post-row-title">{{ post.title }}</h3>
+          {%- if post.concept %}
+          <p class="post-row-meta">오늘의 기초 지식 <b>{{ post.concept }}</b>{% if post.stage %} · {% include stage-badge.html stage=post.stage %}{% endif %}</p>
+          {%- endif %}
+        </div>
+      </a>
+    </article>
+    {%- else -%}
+    <p class="empty">아직 올라온 브리핑이 없습니다.</p>
+    {%- endfor -%}
+  </div>
 </section>

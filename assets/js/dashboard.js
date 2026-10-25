@@ -1,46 +1,36 @@
-// 홈 대시보드 보강: 추세 그래프(sparkline), 천 단위 쉼표, 갱신 지연 표시. 스크립트가 없어도 숫자는 보인다.
+// 홈 대시보드(GlanceRow) 보강: 다섯 막대 스파크, 천 단위 쉼표, 갱신 지연. 스크립트가 없어도 숫자·증감은 보인다.
 // 갱신 지연 기준(일): 선물 시세는 7일, 국세청 월 통계는 발표가 몇 달 늦어 270일.
 (function () {
   var STALE_DAYS = { arabica: 7, robusta: 7, coffee_shops: 270 };
   var today = new Date();
 
-  document.querySelectorAll('.dash-card').forEach(function (card) {
-    // 천 단위 쉼표
-    var num = card.querySelector('.dash-num');
+  document.querySelectorAll('.glance-row').forEach(function (row) {
+    var num = row.querySelector('.num');
     if (num) {
       var d = +num.getAttribute('data-digits') || 0;
       var v = parseFloat(num.textContent);
       if (!isNaN(v)) num.textContent = v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
     }
 
-    // 갱신 지연
-    var asOf = card.getAttribute('data-as-of') || '';
+    var asOf = row.getAttribute('data-as-of') || '';
     var dt = new Date(asOf.length === 7 ? asOf + '-01' : asOf);
-    var limit = STALE_DAYS[card.getAttribute('data-key')] || 7;
+    var limit = STALE_DAYS[row.getAttribute('data-key')] || 7;
     if (!isNaN(dt) && (today - dt) / 86400000 > limit) {
-      var s = card.querySelector('.dash-stale');
+      var s = row.querySelector('.glance-stale');
       if (s) s.hidden = false;
     }
 
-    // 추세 그래프
-    var box = card.querySelector('.dash-spark');
+    // 다섯 막대: 최근 기록 5개, 마지막(기준일)만 evergreen. 높이는 최솟값의 90%를 바닥으로 비례.
+    var box = row.querySelector('.glance-spark');
     var hist;
-    try { hist = JSON.parse(card.getAttribute('data-history') || '[]'); } catch (e) { hist = []; }
-    if (!box || hist.length < 2) { if (box) box.remove(); return; }
-    var W = 200, H = 40, P = 3;
-    var vals = hist.map(function (h) { return h[1]; });
-    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    try { hist = JSON.parse(row.getAttribute('data-history') || '[]'); } catch (e) { hist = []; }
+    var vals = hist.slice(-5).map(function (h) { return h[1]; });
+    if (!box) return;
+    if (vals.length < 2) { box.style.visibility = 'hidden'; return; }
+    var min = Math.min.apply(null, vals) * 0.9, max = Math.max.apply(null, vals);
     var span = max - min || 1;
-    var pts = vals.map(function (v, i) {
-      var x = P + (W - 2 * P) * i / (vals.length - 1);
-      var y = H - P - (H - 2 * P) * (v - min) / span;
-      return [x.toFixed(1), y.toFixed(1)];
-    });
-    var line = pts.map(function (p) { return p.join(','); }).join(' ');
-    var area = 'M' + pts[0][0] + ',' + (H - P) + ' L' + line.replace(/ /g, ' L') + ' L' + pts[pts.length - 1][0] + ',' + (H - P) + ' Z';
-    var last = pts[pts.length - 1];
-    box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="최근 ' + vals.length + '개 기록 추세">' +
-      '<path class="area" d="' + area + '"/><polyline class="line" points="' + line + '"/>' +
-      '<circle class="dot" cx="' + last[0] + '" cy="' + last[1] + '" r="2.5"/></svg>';
+    box.innerHTML = vals.map(function (v) {
+      return '<i style="height:' + Math.max(4, Math.round(40 * (v - min) / span)) + 'px"></i>';
+    }).join('');
   });
 })();

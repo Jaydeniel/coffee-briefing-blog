@@ -1,51 +1,49 @@
-// Espresso Vibe 디자인 값 (DESIGN.md 참고). 색·글꼴·간격은 여기서만 바꾼다.
+// Annual Report 디자인 시스템 (claude.ai 아티팩트 "Annual Report")을 웹 블로그에 옮긴 값. DESIGN.md 참고.
+// 원칙: 흰 종이 위에 선과 숫자. 그림자·그라디언트·둥근 모서리·어두운 배경 없음. 강조색은 evergreen 하나.
 :root {
-  // 커피 팔레트
-  --c-espresso: #3b2418;   // 브랜드, 제목
-  --c-roast: #5a3a28;      // 강조 텍스트, 링크 hover
-  --c-crema: #c08a56;      // 포인트 (링크 밑줄, 마크)
-  --c-crema-soft: #f3e6d6; // 강조 배경
-  --c-milk: #fbf7f1;       // 페이지 바탕
-  --c-paper: #ffffff;      // 카드 바탕
-  --c-ink: #2a211c;        // 본문
-  --c-muted: #7a6a5e;      // 날짜, 보조 텍스트
-  --c-line: #e8dccd;       // 구분선, 테두리
+  // 색 (원본 토큰 이름 그대로)
+  --surface: #ffffff;       // 모든 배경
+  --surface-tint: #eef4f1;  // 유일한 색면: 표의 당해 연도 열 음영에만
+  --ink: #0e2a22;           // 헤드라인, 큰 숫자
+  --text: #33443e;          // 본문
+  --muted: #6e7f78;         // 노트, 출처, 러닝 헤더
+  --evergreen: #0e4d3c;     // 유일한 강조: 거대 연도, 증감, 섹션명, 당해 막대
+  --chart-2: #4f9c7f;       // 차트 2번 (텍스트 금지)
+  --mint: #a8d5c2;          // 이전 연도 막대 (텍스트 금지)
+  --gold: #c9a227;          // 표지 키라인에만 (텍스트 금지)
+  --rule: #cfded7;          // 1px 행 구분선
 
-  // 창업 단계 (Notion 📰 아침 브리핑 DB와 같은 색 의미)
-  --c-stage-franchise: #c8691c;     // 저가 프랜차이즈
-  --c-stage-franchise-bg: #fbeadb;
-  --c-stage-indie: #2f7d4f;         // 개인 카페
-  --c-stage-indie-bg: #e3f1e8;
-  --c-stage-common: #6f665e;        // 공통
-  --c-stage-common-bg: #eeeae6;
+  // 선 (그림자 대신 쓰는 유일한 구분 장치)
+  --rule-hairline: 1px solid #cfded7;
+  --rule-strong: 2px solid #0e2a22;
+  --rule-accent: 3px solid #0e4d3c;
+  --keyline: 4px solid #c9a227;
 
-  // 지표 변동 (국내 시세 표기 관례: 오름 빨강, 내림 파랑)
-  --c-up: #c2412d;
-  --c-up-bg: #fbe9e5;
-  --c-down: #2d64b3;
-  --c-down-bg: #e6eefa;
+  // 서체: 원본은 DM Serif Display / DM Sans. 한글 글리프가 없어 Noto Serif KR / Pretendard로 받친다.
+  --font-serif: "DM Serif Display", "Noto Serif KR", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", Arial, Helvetica, sans-serif;
 
-  // 글꼴
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  --fs-base: 17px;
-  --fs-sm: 0.875rem;
-  --fs-xs: 0.78rem;
-  --fs-h1: clamp(1.7rem, 1.2rem + 2vw, 2.4rem);
-  --fs-h2: 1.35rem;
-  --fs-h3: 1.1rem;
-  --lh-body: 1.78;
-  --lh-tight: 1.35;
+  // 글자 크기: 원본은 인쇄 기준(본문 15px, 노트 10px). 웹 읽기에 맞춰 한 단계 키움.
+  --fs-body: 16px;
+  --fs-label: 14px;
+  --fs-table: 14px;
+  --fs-note: 12px;
+  --fs-running: 12px;
+  --fs-headline: clamp(28px, 1.6vw + 20px, 40px);
+  --fs-section: 26px;
+  --fs-figure: 40px;
+  --fs-display-cover: clamp(34px, 2.4vw + 22px, 48px);
+  --fs-pull-quote: 24px;
+  --fs-display-year: clamp(170px, 30vw, 380px);
+  --lh-body: 1.72;
 
-  // 간격 (4px 배수)
-  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
-  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+  // 간격 (원본 그대로)
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px;
+  --page-margin: 64px;
+  --keyline-width: 72px;
 
-  // 형태
-  --radius-sm: 6px;
-  --radius: 12px;
-  --radius-pill: 999px;
-  --shadow-card: 0 1px 2px rgba(59, 36, 24, 0.06), 0 4px 16px rgba(59, 36, 24, 0.05);
-  --width-content: 720px;
-  --width-wide: 960px;
+  // 형태: 둥근 모서리 없음
+  --radius-none: 0px;
+  --width-content: 760px;
 }
