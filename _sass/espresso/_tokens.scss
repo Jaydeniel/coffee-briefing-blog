@@ -34,7 +34,7 @@
   --fs-figure: 40px;
   --fs-display-cover: clamp(34px, 2.4vw + 22px, 48px);
   --fs-pull-quote: 24px;
-  --fs-display-year: clamp(170px, 30vw, 380px);
+  --fs-display-year: 240px; // 원본 360~420px(1920 캔버스). 760px 본문 폭에서 글과 겹치지 않는 크기
   --lh-body: 1.72;
 
   // 간격 (원본 그대로)

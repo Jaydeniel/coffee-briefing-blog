@@ -1,7 +1,7 @@
 // 홈 표지(GiantYear), 글 목록(선으로 나눈 줄), 글 머리, 이전·다음
 // 표지: 회사명 evergreen 소형 → display-cover 제목 → 스탠드퍼스트 → gold 키라인 → 잘린 거대 연도
-.cover { position: relative; overflow: hidden; min-height: 360px; margin: calc(-1 * var(--space-12)) 0 var(--space-12); padding: var(--space-12) 0 var(--space-8); border-bottom: var(--rule-hairline); }
-.cover-text { position: relative; z-index: 1; max-width: 56%; }
+.cover { position: relative; overflow: hidden; min-height: 450px; margin: calc(-1 * var(--space-12)) 0 var(--space-12); padding: var(--space-12) 0 var(--space-8); border-bottom: var(--rule-hairline); }
+.cover-text { position: relative; z-index: 1; max-width: 62%; }
 .cover-co { margin: 0 0 var(--space-3); color: var(--evergreen); font-weight: 600; font-size: var(--fs-label); }
 .cover-title { font-size: var(--fs-display-cover); line-height: 1.1; }
 .cover-stand { margin-top: var(--space-4); color: var(--text); }
