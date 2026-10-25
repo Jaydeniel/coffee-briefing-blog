@@ -69,20 +69,33 @@
     li.classList.add('has-date');
   });
 
-  // 4) 링크 복사 (벤치마킹 1단계)
+  // 4) 링크 복사 (벤치마킹 1단계). 클립보드 API → execCommand → 주소 입력창 순으로 시도
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
   document.querySelectorAll('.copy-link').forEach(function (btn) {
+    var label = btn.textContent;
+    function show(text, ok) {
+      btn.textContent = text;
+      btn.classList.toggle('copied', ok);
+      setTimeout(function () { btn.textContent = label; btn.classList.remove('copied'); }, 2000);
+    }
     btn.addEventListener('click', function () {
       var url = btn.getAttribute('data-url') || location.href;
-      var done = function () {
-        var old = btn.textContent;
-        btn.textContent = '복사했습니다';
-        btn.classList.add('copied');
-        setTimeout(function () { btn.textContent = old; btn.classList.remove('copied'); }, 1800);
+      var fallback = function () {
+        if (legacyCopy(url)) { show('복사했습니다', true); return; }
+        window.prompt('아래 주소를 복사하세요', url);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(done, function () { window.prompt('링크를 복사하세요', url); });
+        navigator.clipboard.writeText(url).then(function () { show('복사했습니다', true); }, fallback);
       } else {
-        window.prompt('링크를 복사하세요', url);
+        fallback();
       }
     });
   });
