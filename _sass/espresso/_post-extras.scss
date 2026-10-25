@@ -7,7 +7,8 @@
   width: 100vw; margin-left: calc(50% - 50vw); margin-top: calc(-1 * var(--space-12));
   margin-bottom: 0; padding: 0; border-bottom: 0;
   background-color: var(--ink); background-size: cover; background-repeat: no-repeat;
-  min-height: unquote("min(78vh, 680px)"); // 옛 Sass(GitHub Pages)가 min()을 계산하려 해서 감싼다 display: flex; align-items: flex-end;
+  // 옛 Sass(GitHub Pages)가 min()을 계산하려 해서 unquote로 감싼다
+  min-height: unquote("min(78vh, 680px)"); display: flex; align-items: flex-end;
 }
 .post-cover::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(14, 42, 34, 0.9) 0%, rgba(14, 42, 34, 0.82) 38%, rgba(14, 42, 34, 0.45) 72%, rgba(14, 42, 34, 0.3) 100%); }
 .post-cover-inner { position: relative; z-index: 1; width: 100%; max-width: var(--width-content); margin: 0 auto; padding: var(--space-12) var(--space-6) var(--space-12); }
