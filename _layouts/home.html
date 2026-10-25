@@ -7,6 +7,8 @@ layout: default
   <div class="hero-lead">{{ content }}</div>
 </section>
 
+{% include dashboard.html %}
+
 <section class="post-list" aria-label="브리핑 목록">
   {%- for post in site.posts -%}
   <article class="post-card">

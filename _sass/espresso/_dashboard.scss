@@ -1,0 +1,47 @@
+// 홈 대시보드: 오늘의 커피 지표
+.dash { margin: 0 0 var(--sp-7); }
+.dash-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.dash-head h2 { font-size: var(--fs-h3); font-weight: 800; }
+.dash-updated { margin: 0; color: var(--c-muted); font-size: var(--fs-xs); }
+
+.dash-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-3); }
+.dash-card {
+  display: flex; flex-direction: column;
+  background: var(--c-paper); border: 1px solid var(--c-line); border-radius: var(--radius);
+  box-shadow: var(--shadow-card); padding: var(--sp-4);
+}
+.dash-card-head h3 { font-size: var(--fs-sm); font-weight: 700; color: var(--c-espresso); }
+.dash-market { margin: 2px 0 0; color: var(--c-muted); font-size: var(--fs-xs); }
+.dash-value { margin: var(--sp-3) 0 var(--sp-2); display: flex; align-items: baseline; gap: 6px; }
+.dash-num { font-size: 1.7rem; font-weight: 800; color: var(--c-espresso); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.dash-unit { color: var(--c-muted); font-size: var(--fs-xs); }
+
+.dash-changes { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px; }
+.chg { font-size: var(--fs-xs); font-weight: 700; padding: 1px 6px; border-radius: var(--radius-pill); font-variant-numeric: tabular-nums; line-height: 1.6; }
+.chg span { font-weight: 500; margin-right: 3px; opacity: 0.8; }
+.chg.up { color: var(--c-up); background: var(--c-up-bg); }
+.chg.down { color: var(--c-down); background: var(--c-down-bg); }
+.chg.flat { color: var(--c-muted); background: var(--c-stage-common-bg); }
+
+.dash-spark { height: 40px; margin: var(--sp-3) 0 var(--sp-2); }
+.dash-spark svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.dash-spark .line { fill: none; stroke: var(--c-crema); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.dash-spark .area { fill: var(--c-crema-soft); opacity: 0.7; }
+.dash-spark .dot { fill: var(--c-espresso); }
+
+.dash-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 4px var(--sp-2); font-size: var(--fs-xs); color: var(--c-muted); }
+.dash-foot a { color: var(--c-muted); text-decoration: none; }
+.dash-foot a::after { content: "↗"; margin-left: 2px; color: var(--c-crema); }
+.dash-foot a:hover { color: var(--c-espresso); }
+.dash-stale { color: var(--c-up); background: var(--c-up-bg); font-weight: 700; padding: 0 6px; border-radius: var(--radius-pill); }
+.dash-note { margin: var(--sp-2) 0 0; color: var(--c-muted); font-size: var(--fs-xs); }
+
+@media (max-width: 760px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .dash-card { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "head value" "chg chg" "spark spark" "foot foot"; column-gap: var(--sp-3); }
+  .dash-card-head { grid-area: head; }
+  .dash-value { grid-area: value; margin: 0; align-self: center; }
+  .dash-changes { grid-area: chg; margin-top: var(--sp-2); }
+  .dash-spark { grid-area: spark; height: 32px; }
+  .dash-foot { grid-area: foot; }
+}

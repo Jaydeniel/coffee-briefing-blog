@@ -19,6 +19,12 @@
   --c-stage-common: #6f665e;        // 공통
   --c-stage-common-bg: #eeeae6;
 
+  // 지표 변동 (국내 시세 표기 관례: 오름 빨강, 내림 파랑)
+  --c-up: #c2412d;
+  --c-up-bg: #fbe9e5;
+  --c-down: #2d64b3;
+  --c-down-bg: #e6eefa;
+
   // 글꼴
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;

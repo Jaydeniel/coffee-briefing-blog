@@ -1,0 +1,49 @@
+{%- comment -%} 홈 대시보드 (DESIGN.md "대시보드"). 데이터: _data/metrics.json (private 저장소 blog/push_metrics.py가 매일 갱신) {%- endcomment -%}
+{%- assign m = site.data.metrics -%}
+{%- if m and m.indicators.size > 0 -%}
+<section class="dash" aria-labelledby="dash-title">
+  <div class="dash-head">
+    <h2 id="dash-title">오늘의 커피 지표</h2>
+    <p class="dash-updated">갱신 <time datetime="{{ m.updated }}">{{ m.updated | replace: '-', '.' }}</time></p>
+  </div>
+  <div class="dash-grid">
+    {%- for ind in m.indicators -%}
+    {%- assign L = ind.latest -%}
+    <article class="dash-card" data-key="{{ ind.key }}" data-as-of="{{ L.as_of }}" data-history='{{ ind.history | jsonify }}'>
+      <header class="dash-card-head">
+        <h3>{{ ind.name }}</h3>
+        <p class="dash-market">{{ ind.market }}</p>
+      </header>
+      <p class="dash-value">
+        {%- if ind.digits == 0 -%}
+          {%- assign v = L.value | round -%}
+        {%- else -%}
+          {%- assign v = L.value | round: ind.digits -%}
+        {%- endif -%}
+        <span class="dash-num" data-digits="{{ ind.digits }}">{{ v }}</span>
+        <span class="dash-unit">{{ ind.unit_label }}</span>
+      </p>
+      <ul class="dash-changes">
+        {%- assign labels = "일간,월간,전년" | split: "," -%}
+        {%- assign vals = "" | split: "" | push: L.change_d | push: L.change_m | push: L.change_y -%}
+        {%- for c in vals -%}
+          {%- if c != nil -%}
+          <li class="chg {% if c > 0 %}up{% elsif c < 0 %}down{% else %}flat{% endif %}">
+            <span>{{ labels[forloop.index0] }}</span>{% if c > 0 %}▲{% elsif c < 0 %}▼{% endif %}{{ c | abs }}%
+          </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      <div class="dash-spark" aria-hidden="true"></div>
+      <footer class="dash-foot">
+        <span>기준 {{ L.as_of | replace: '-', '.' }}</span>
+        <a href="{{ L.source_url }}" target="_blank" rel="noopener">{{ L.source }}</a>
+        <span class="dash-stale" hidden>갱신 지연</span>
+      </footer>
+    </article>
+    {%- endfor -%}
+  </div>
+  <p class="dash-note">시세는 각 출처가 밝힌 기준일의 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
+</section>
+<script src="{{ '/assets/js/dashboard.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif -%}
