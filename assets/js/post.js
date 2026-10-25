@@ -127,7 +127,22 @@
     document.body.appendChild(fab);
     document.body.appendChild(sheet);
 
+    // 지금 위치에서 화면 위 40% 안에 마지막으로 지나간 섹션을 현재 섹션으로 표시
+    var markCurrent = function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.post-toc a, .toc-sheet a'));
+      var cur = null;
+      links.forEach(function (a) {
+        var h = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+        if (h && h.getBoundingClientRect().top < window.innerHeight * 0.4) cur = a.getAttribute('href');
+      });
+      links.forEach(function (a) {
+        var on = a.getAttribute('href') === cur;
+        a.classList.toggle('is-current', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    };
     var openSheet = function () {
+      markCurrent();
       sheet.hidden = false;
       document.documentElement.classList.add('sheet-open');
       fab.setAttribute('aria-expanded', 'true');
