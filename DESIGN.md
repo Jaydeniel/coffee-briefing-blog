@@ -35,6 +35,11 @@
 | PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 오늘의 기초 지식 = 두 단(왼쪽 룰·표시·개념, 오른쪽 문단) | `_post-sections.scss` |
 | SummaryTable | 다가오는 일정, 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |
 | (목록) | 글 목록: 카드 대신 rule로 나눈 줄(날짜 · 세리프 제목 · 기초 지식) | `_layouts/home.html` |
+| GiantYear 응용 | 글 머리 날짜 커버: 텍스트 아래 "MM.DD"를 거대 세리프로, 머리 아래에서 잘림 (브런치 커버 사진 대신) | `_layouts/post.html`, `_post-extras.scss` |
+| PageFurniture 응용 | 러닝 헤더 "아침 브리핑 #N"(연재 번호), 글 머리 "읽는 시간 N분"(본문 500자/분) | `_layouts/post.html` |
+| (벤치마킹) | 섹션 바로가기: 머리 아래 한 줄 목차, 1240px 이상은 왼쪽 여백 고정 + 읽는 섹션 evergreen | `_layouts/post.html`, `_post-extras.scss`, `post.js` |
+| (벤치마킹) | 키워드: 글 끝 키워드 줄 → `/keywords/` 모아 보기(태그별 글 목록) | `keywords.md`, `_post-extras.scss` |
+| (벤치마킹) | 링크 복사: 글자 버튼(클립보드 → execCommand → 입력창) | `post.js` |
 
 ## 웹으로 옮기며 바꾼 것
 1. **한글 서체**: DM 서체에 한글이 없어 세리프는 Noto Serif KR, 산세리프는 Pretendard로 받친다(라틴·숫자는 DM).
@@ -49,5 +54,11 @@
 - 대시보드 데이터 `_data/metrics.json`은 private 저장소 `blog/push_metrics.py`가 매일 만든다. 손으로 고치지 않는다.
 - 스타일·스크립트 주소에 `?v=site.time`을 붙여 배포 직후 캐시 문제를 막는다.
 
+## 벤치마킹 (2026-10-25, 브런치·티스토리·네이버 블로그)
+1단계(완료): 날짜 숫자 커버, 연재 번호, 읽는 시간, 섹션 바로가기, 키워드 모아 보기, 링크 복사.
+2단계: 개념 사전(SummaryTable 형식), 관련 브리핑 3개(키워드·개념 겹침, 썸네일 없음), 메뉴(브리핑·기초 지식·지표·소개), 검색.
+3단계: 소개 상자와 RSS 구독, 댓글(giscus, 본인 GitHub 설정 필요).
+가져오지 않음: 커버 사진·썸네일 그리드(스톡 사진·카드 그리드 금지), 색 인용구 여러 종(강조색 하나).
+
 ## 다음 단계
-개념 사전 페이지(SummaryTable 형식), 404, 공유 이미지. 다크 모드는 원본이 어두운 배경을 금지해 만들지 않는다.
+벤치마킹 2·3단계, 404, 공유 이미지. 다크 모드는 원본이 어두운 배경을 금지해 만들지 않는다.
