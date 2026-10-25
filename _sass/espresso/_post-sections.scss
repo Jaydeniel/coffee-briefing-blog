@@ -36,6 +36,9 @@
 .basics-left h2 { font-size: 30px !important; line-height: 1.2; margin-top: var(--space-2) !important; }
 .basics-body > * + * { margin-top: var(--space-4); }
 .basics-body p { margin: 0; }
+// 커피 컬럼: ### 주제마다 한 편, 사이에 1px 선
+.basics-body h3 { font-family: var(--font-serif); font-size: 21px; line-height: 1.3; color: var(--ink); margin: 0 0 var(--space-2); }
+.basics-body h3 ~ h3 { margin-top: var(--space-8); padding-top: var(--space-6); border-top: var(--rule-hairline); }
 
 // 다가오는 일정: SummaryTable처럼 (헤더 아래 ink 2px, 행 1px)
 .sec-schedule > h2 { padding-bottom: var(--space-3); border-bottom: var(--rule-strong); }

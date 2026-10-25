@@ -3,8 +3,8 @@ layout: default
 ---
 {%- comment -%}
   글 틀 (DESIGN.md). 초안 형식(blog-draft 스킬)은 그대로 두고 블로그 쪽에서만 꾸민다.
-  - 본문을 <h2> 단위로 잘라 섹션 종류를 고른다: 오늘의-한-줄 → summary, 커피-지식-* → basics, 이달의-국내-커피-이벤트 → schedule, 그 밖 → news
-  - 2026-10-26 이전 글의 오늘의-기초-지식-*, 다가오는-일정도 같은 종류로 본다
+  - 본문을 <h2> 단위로 잘라 섹션 종류를 고른다: 오늘의-한-줄 → summary, 커피-컬럼 → basics(### 주제마다 컬럼), 이달의-국내-커피-이벤트 → schedule, 그 밖 → news
+  - 이전 글의 커피-지식-*, 오늘의-기초-지식-*, 다가오는-일정도 같은 종류로 본다
   - <hr /> 뒤는 글 끝 노트
   - 벤치마킹 1단계(브런치·티스토리): 브런치식 커버 사진, 연재 번호, 읽는 시간, 섹션 바로가기, 키워드, 링크 복사
 {%- endcomment -%}
@@ -33,7 +33,7 @@ layout: default
       <p class="post-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
         <span>읽는 시간 {{ read_min }}분</span>
-        {%- if page.concept %}<span>{% if page.field %}커피 지식{% else %}오늘의 기초 지식{% endif %} <b>{{ page.concept }}</b></span>{% endif %}
+        {%- if page.concept %}<span>{% if page.field %}커피 컬럼{% else %}오늘의 기초 지식{% endif %} <b>{{ page.concept }}</b></span>{% endif %}
         {%- if page.stage %}{% include stage-badge.html stage=page.stage %}{% endif %}
         <button type="button" class="copy-link" data-url="{{ page.url | absolute_url }}">링크 복사</button>
       </p>
@@ -67,6 +67,9 @@ layout: default
       {%- assign html = c -%}
       {%- if sid contains '오늘의-한-줄' -%}
         {%- assign kind = 'summary' -%}
+      {%- elsif sid contains '커피-컬럼' -%}
+        {%- assign kind = 'basics' -%}
+        {%- assign kicker = '' -%}
       {%- elsif sid contains '커피-지식' -%}
         {%- assign kind = 'basics' -%}
         {%- assign kicker = '커피 지식' -%}
@@ -82,7 +85,7 @@ layout: default
       {%- if kind == 'basics' -%}
         {%- assign hb = html | split: '</h2>' %}
       <div class="basics-left">
-        <p class="basics-kicker"><span>{{ kicker }}</span>{% if page.field %}<span class="field-tag">{{ page.field }}</span>{% endif %}{% include stage-badge.html stage=page.stage %}</p>
+        <p class="basics-kicker">{% if kicker != "" %}<span>{{ kicker }}</span>{% endif %}{% if page.field %}<span class="field-tag">{{ page.field }}</span>{% endif %}{% include stage-badge.html stage=page.stage %}</p>
         <h2 {{ hb[0] }}</h2>
       </div>
       <div class="basics-body">{% for part in hb offset:1 %}{{ part }}{% unless forloop.last %}</h2>{% endunless %}{% endfor %}</div>

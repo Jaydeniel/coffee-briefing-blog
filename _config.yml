@@ -1,6 +1,6 @@
 # Espresso Vibe — 자체 디자인 시스템(DESIGN.md). GitHub Pages가 Jekyll로 빌드한다. 외부 테마 없음.
 title: Espresso Vibe
-description: 매일 아침 국내외 커피 시장 동향과 이슈, 커피 지식 하나, 이달의 국내 커피 이벤트를 정리합니다.
+description: 매일 아침 국내외 커피 시장 동향과 이슈, 커피 컬럼, 이달의 국내 커피 이벤트를 정리합니다.
 lang: ko
 locale: ko_KR
 timezone: Asia/Seoul
