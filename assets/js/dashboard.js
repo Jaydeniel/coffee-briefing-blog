@@ -1,6 +1,7 @@
 // 홈 대시보드 보강: 추세 그래프(sparkline), 천 단위 쉼표, 갱신 지연 표시. 스크립트가 없어도 숫자는 보인다.
+// 갱신 지연 기준(일): 선물 시세는 7일, 국세청 월 통계는 발표가 몇 달 늦어 270일.
 (function () {
-  var STALE_DAYS = { arabica: 7, robusta: 7, coffee_shops: 150 };
+  var STALE_DAYS = { arabica: 7, robusta: 7, coffee_shops: 270 };
   var today = new Date();
 
   document.querySelectorAll('.dash-card').forEach(function (card) {
