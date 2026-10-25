@@ -5,7 +5,7 @@ layout: default
   글 틀 (DESIGN.md). 초안 형식(blog-draft 스킬)은 그대로 두고 블로그 쪽에서만 꾸민다.
   - 본문을 <h2> 단위로 잘라 섹션 종류를 고른다: 오늘의-한-줄 → summary, 오늘의-기초-지식-* → basics, 다가오는-일정 → schedule, 그 밖 → news
   - <hr /> 뒤는 글 끝 노트
-  - 벤치마킹 1단계(브런치·티스토리): 날짜 숫자 커버, 연재 번호, 읽는 시간, 섹션 바로가기, 키워드, 링크 복사
+  - 벤치마킹 1단계(브런치·티스토리): 브런치식 커버 사진, 연재 번호, 읽는 시간, 섹션 바로가기, 키워드, 링크 복사
 {%- endcomment -%}
 {%- assign body_parts = content | split: '<hr />' -%}
 {%- assign chunks = body_parts[0] | split: '<h2 ' -%}
@@ -14,8 +14,19 @@ layout: default
 {%- assign char_count = content | strip_html | strip_newlines | size -%}
 {%- assign read_min = char_count | divided_by: 500 | plus: 1 -%}
 <article class="post">
-  <header class="post-header">
-    <div class="post-header-text">
+  {%- comment -%} 브런치식 커버: 화면 폭을 채운 사진 위에 제목·정보. 사진은 front matter cover 우선, 없으면 _data/covers.yml에서 날짜로 돌려 쓴다 {%- endcomment -%}
+  {%- assign covers = site.data.covers -%}
+  {%- if page.cover -%}
+    {%- assign cover_src = page.cover -%}{%- assign cover_author = page.cover_credit -%}{%- assign cover_link = page.cover_credit_url -%}{%- assign cover_pos = page.cover_position | default: 'center' -%}{%- assign cover_alt = page.cover_alt | default: '' -%}
+  {%- elsif covers and covers.size > 0 -%}
+    {%- assign day = page.date | date: '%j' | plus: 0 -%}
+    {%- assign ci = day | modulo: covers.size -%}
+    {%- assign cv = covers[ci] -%}
+    {%- capture cover_src %}{{ cv.src }}?w=2000&q=70&auto=format&fit=crop{% endcapture -%}
+    {%- assign cover_author = cv.author -%}{%- assign cover_link = cv.photo_url -%}{%- assign cover_pos = cv.position -%}{%- assign cover_alt = cv.alt -%}
+  {%- endif %}
+  <header class="post-header post-cover{% if cover_src %} has-photo{% endif %}"{% if cover_src %} style="background-image:url('{{ cover_src }}');background-position:{{ cover_pos }}"{% endif %}>
+    <div class="post-cover-inner">
       <p class="running-header"><span>커피 시장 브리핑 {{ page.date | date: "%Y" }}</span><b>아침 브리핑 #{{ series_no }}</b></p>
       <h1 class="post-title">{{ page.title }}</h1>
       <p class="post-meta">
@@ -26,7 +37,9 @@ layout: default
         <button type="button" class="copy-link" data-url="{{ page.url | absolute_url }}">링크 복사</button>
       </p>
     </div>
-    <p class="post-date-mark" aria-hidden="true">{{ page.date | date: "%m.%d" }}</p>
+    {%- if cover_src and cover_author %}
+    <p class="cover-credit">사진 <a href="{{ cover_link }}" target="_blank" rel="noopener">{{ cover_author }}</a> / Unsplash</p>
+    {%- endif %}
   </header>
 
   {%- comment -%} 섹션 바로가기: 본문 h2의 id와 글자를 그대로 쓴다 {%- endcomment -%}

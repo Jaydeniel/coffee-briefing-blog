@@ -120,4 +120,17 @@
       if (h) obs.observe(h);
     });
   }
+
+  // 6) 넓은 화면 고정 목차는 커버를 지난 뒤에만 보인다
+  var cover = document.querySelector('.post-cover.has-photo');
+  var toc = document.querySelector('.post-toc');
+  if (toc) {
+    if (cover && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        toc.classList.toggle('is-visible', !es[0].isIntersecting);
+      }, { rootMargin: '-60px 0px 0px 0px' }).observe(cover);
+    } else {
+      toc.classList.add('is-visible');
+    }
+  }
 })();

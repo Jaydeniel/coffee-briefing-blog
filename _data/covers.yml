@@ -1,0 +1,24 @@
+# 글 커버 사진 (브런치식 커버, 결정 0022 갱신). Unsplash License: 상업·비상업 무료, 허락 불필요. 출처는 커버에 표시한다.
+# 글 front matter에 cover(이미지 주소)·cover_credit·cover_credit_url 이 있으면 그것을 쓰고, 없으면 날짜(1년 중 몇째 날)로 아래에서 돌려 쓴다.
+# 사진을 더할 때: 매장·제품·커피처럼 주제에 속하는 실물 사진만, 브랜드 로고가 크게 보이는 사진은 뺀다.
+- id: espresso-bar
+  src: https://images.unsplash.com/photo-1511287830614-09802dd6cd79
+  alt: 에스프레소 머신과 스팀 피처가 놓인 카페 바
+  author: Nathan Dumlao
+  author_url: https://unsplash.com/@nate_dumlao
+  photo_url: https://unsplash.com/photos/two-stainless-steel-espresso-makers-vJiSzt85zZw
+  position: center 45%
+- id: cafe-barista
+  src: https://images.unsplash.com/photo-1766767164066-d2f4571e75d1
+  alt: 원두 봉투가 진열된 카페에서 그라인더를 다루는 바리스타
+  author: Mehrpouya H
+  author_url: https://unsplash.com/@mehrpouya
+  photo_url: https://unsplash.com/photos/barista-making-coffee-behind-counter-in-cafe-GLzzp7yMoSo
+  position: center 40%
+- id: espresso-pour
+  src: https://images.unsplash.com/photo-1777558578066-44266564ee65
+  alt: 작은 유리잔에 내려지는 에스프레소
+  author: Wenceslao Moya grondona de luca
+  author_url: https://unsplash.com/@wencesmoya
+  photo_url: https://unsplash.com/photos/espresso-being-poured-into-a-small-glass-GzwqrTKPzQA
+  position: center 55%
