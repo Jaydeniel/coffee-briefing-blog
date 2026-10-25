@@ -1,104 +1,30 @@
 {
  "v": 2,
- "updated": "2026-10-25",
+ "updated": "2026-10-26",
  "groups": [
   {
    "key": "macro",
    "title": "거시 지표",
-   "subtitle": "세계 원두 가격과 수급",
+   "subtitle": "세계 원두 가격(실물 기준)과 수급",
    "cards": [
     {
-     "key": "arabica",
-     "name": "아라비카 원두 선물",
-     "market": "ICE 뉴욕 · 근월물",
-     "value": 307.45,
-     "digits": 2,
-     "unit_label": "센트/파운드",
-     "as_of": "2026-10-23",
-     "period": "2026.10.23",
-     "cadence": "daily",
-     "changes": [
-      {
-       "text": "−1.6%",
-       "label": "전일 대비"
-      },
-      {
-       "text": "+11.66%",
-       "label": "한 달"
-      },
-      {
-       "text": "−23.71%",
-       "label": "1년"
-      }
-     ],
-     "extra": null,
-     "note": null,
-     "source": "Trading Economics",
-     "source_url": "https://tradingeconomics.com/commodity/coffee",
-     "history": [
-      [
-       "2026-10-19",
-       313.71
-      ],
-      [
-       "2026-10-20",
-       309.99
-      ],
-      [
-       "2026-10-21",
-       316.66
-      ],
-      [
-       "2026-10-22",
-       311.37
-      ],
-      [
-       "2026-10-23",
-       307.45
-      ]
-     ]
-    },
-    {
-     "key": "robusta",
-     "name": "로부스타 원두 선물",
-     "market": "ICE 런던 · 근월물",
-     "value": 3228.0,
-     "digits": 0,
-     "unit_label": "달러/톤",
-     "as_of": "2026-10-23",
-     "period": "2026.10.23",
-     "cadence": "daily",
-     "changes": [
-      {
-       "text": "−1.82%",
-       "label": "전일 대비"
-      }
-     ],
-     "extra": null,
-     "note": null,
-     "source": "VOV (런던 11월물)",
-     "source_url": "http://vov.vn/thi-truong/gia-ca-phe-hom-nay-2410-gia-ca-phe-robusta-va-arabia-dong-loat-giam-post1344049.vov",
-     "history": [
-      [
-       "2026-10-23",
-       3228.0
-      ]
-     ]
-    },
-    {
      "key": "ico_icip",
-     "name": "ICO 복합지표가격",
-     "market": "월평균 · 아라비카+로부스타",
-     "value": 263.74,
+     "name": "I-CIP 복합지표가격",
+     "market": "ICO · 실물 4개 그룹 가중 · 일별",
+     "value": 266.28,
      "digits": 2,
      "unit_label": "센트/파운드",
-     "as_of": "2026-10",
-     "period": "2026.10 (22일까지)",
-     "cadence": "monthly",
+     "as_of": "2026-10-22",
+     "period": "2026.10.22",
+     "cadence": "daily",
      "changes": [
       {
-       "text": "+0.6%",
-       "label": "전월 대비"
+       "text": "−1.49%",
+       "label": "전일 대비"
+      },
+      {
+       "text": "+5.86%",
+       "label": "한 달"
       }
      ],
      "extra": null,
@@ -107,24 +33,165 @@
      "source_url": "https://data.ico.org/overview",
      "history": [
       [
-       "2026-06",
-       248.9
+       "2026-10-16",
+       265.95
       ],
       [
-       "2026-07",
-       287.7
+       "2026-10-19",
+       272.34
       ],
       [
-       "2026-08",
-       287.29
+       "2026-10-20",
+       269.63
       ],
       [
-       "2026-09",
-       262.29
+       "2026-10-21",
+       270.31
       ],
       [
-       "2026-10",
-       263.74
+       "2026-10-22",
+       266.28
+      ]
+     ]
+    },
+    {
+     "key": "ico_robustas",
+     "name": "로부스타 실물 지표",
+     "market": "ICO 그룹 지표 · 저가 블렌드 원가",
+     "value": 160.57,
+     "digits": 2,
+     "unit_label": "센트/파운드",
+     "as_of": "2026-10-22",
+     "period": "2026.10.22",
+     "cadence": "daily",
+     "changes": [
+      {
+       "text": "−2.24%",
+       "label": "전일 대비"
+      },
+      {
+       "text": "−0.99%",
+       "label": "한 달"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "ICO 데이터 포털",
+     "source_url": "https://data.ico.org/overview",
+     "history": [
+      [
+       "2026-10-16",
+       165.34
+      ],
+      [
+       "2026-10-19",
+       168.65
+      ],
+      [
+       "2026-10-20",
+       166.19
+      ],
+      [
+       "2026-10-21",
+       164.25
+      ],
+      [
+       "2026-10-22",
+       160.57
+      ]
+     ]
+    },
+    {
+     "key": "ico_bra_nat",
+     "name": "브라질 내추럴 실물 지표",
+     "market": "ICO 그룹 지표 · 일별",
+     "value": 304.4,
+     "digits": 2,
+     "unit_label": "센트/파운드",
+     "as_of": "2026-10-22",
+     "period": "2026.10.22",
+     "cadence": "daily",
+     "changes": [
+      {
+       "text": "−1.42%",
+       "label": "전일 대비"
+      },
+      {
+       "text": "+10.47%",
+       "label": "한 달"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "ICO 데이터 포털",
+     "source_url": "https://data.ico.org/overview",
+     "history": [
+      [
+       "2026-10-16",
+       301.22
+      ],
+      [
+       "2026-10-19",
+       309.29
+      ],
+      [
+       "2026-10-20",
+       306.52
+      ],
+      [
+       "2026-10-21",
+       308.77
+      ],
+      [
+       "2026-10-22",
+       304.4
+      ]
+     ]
+    },
+    {
+     "key": "ico_ny",
+     "name": "뉴욕 아라비카 선물",
+     "market": "ICE 2·3월물 평균 · 방향 신호",
+     "value": 294.95,
+     "digits": 2,
+     "unit_label": "센트/파운드",
+     "as_of": "2026-10-22",
+     "period": "2026.10.22",
+     "cadence": "daily",
+     "changes": [
+      {
+       "text": "−1.27%",
+       "label": "전일 대비"
+      },
+      {
+       "text": "+10.47%",
+       "label": "한 달"
+      }
+     ],
+     "extra": null,
+     "note": null,
+     "source": "ICO 데이터 포털",
+     "source_url": "https://data.ico.org/overview",
+     "history": [
+      [
+       "2026-10-16",
+       292.5
+      ],
+      [
+       "2026-10-19",
+       299.85
+      ],
+      [
+       "2026-10-20",
+       296.65
+      ],
+      [
+       "2026-10-21",
+       298.73
+      ],
+      [
+       "2026-10-22",
+       294.95
       ]
      ]
     },
