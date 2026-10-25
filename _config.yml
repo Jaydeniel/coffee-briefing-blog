@@ -1,22 +1,23 @@
-# 공개 블로그 저장소의 루트에 복사해 쓴다 (blog/README.md 참고). GitHub Pages가 Jekyll로 빌드한다.
+# Espresso Vibe — 자체 디자인 시스템(DESIGN.md). GitHub Pages가 Jekyll로 빌드한다. 외부 테마 없음.
 title: Espresso Vibe
 description: 매일 아침 커피 시장 소식과 카페 창업 기초 지식 하나를 정리합니다.
 lang: ko
+locale: ko_KR
 timezone: Asia/Seoul
-theme: minima
 url: https://jaydeniel.github.io
 baseurl: /espresso-vibe
 permalink: /:year/:month/:day/:title/
 markdown: kramdown
-show_excerpts: true
-minima:
-  skin: classic
-header_pages:
-  - about.md
+kramdown:
+  input: GFM
+  auto_ids: true
+sass:
+  style: compressed
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 exclude:
   - README.md
+  - DESIGN.md
   - Gemfile
   - Gemfile.lock

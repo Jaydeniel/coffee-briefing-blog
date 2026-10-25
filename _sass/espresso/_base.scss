@@ -1,0 +1,47 @@
+// 바탕: 리셋, 본문 타이포그래피
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: var(--fs-base); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--c-milk);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  line-height: var(--lh-body);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--c-espresso); text-decoration-color: var(--c-crema); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--c-roast); text-decoration-color: var(--c-roast); }
+:focus-visible { outline: 2px solid var(--c-crema); outline-offset: 2px; border-radius: 2px; }
+
+h1, h2, h3, h4 { color: var(--c-espresso); line-height: var(--lh-tight); letter-spacing: -0.01em; margin: 0; }
+strong { color: var(--c-espresso); font-weight: 700; }
+hr { border: 0; border-top: 1px solid var(--c-line); margin: var(--sp-7) 0; }
+time, .eyebrow { color: var(--c-muted); font-size: var(--fs-sm); }
+.eyebrow { margin: 0 0 var(--sp-2); letter-spacing: 0.02em; }
+
+// 긴 글 본문
+.prose { font-size: 1rem; }
+.prose > * + * { margin-top: var(--sp-4); }
+.prose h2 { font-size: var(--fs-h2); margin-top: var(--sp-7); padding-top: var(--sp-2); }
+.prose h3 { font-size: var(--fs-h3); margin-top: var(--sp-6); }
+.prose p, .prose ul, .prose ol { margin-bottom: 0; }
+.prose ul, .prose ol { padding-left: 1.2em; }
+.prose li + li { margin-top: var(--sp-3); }
+.prose li > ul { margin-top: var(--sp-2); }
+.prose li > ul > li { color: var(--c-roast); font-size: 0.95em; }
+.prose blockquote {
+  margin: 0; padding: var(--sp-3) var(--sp-4);
+  border-left: 3px solid var(--c-crema); background: var(--c-crema-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--c-roast);
+}
+.prose blockquote p { margin: 0; }
+.prose em { color: var(--c-muted); }
+.prose code { font-family: var(--font-mono); font-size: 0.9em; background: var(--c-crema-soft); padding: 0.1em 0.35em; border-radius: 4px; }
+.prose table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+.prose th, .prose td { border-bottom: 1px solid var(--c-line); padding: var(--sp-2) var(--sp-3); text-align: left; }
+
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: var(--sp-4); top: var(--sp-4); background: var(--c-paper); padding: var(--sp-2) var(--sp-3); border-radius: var(--radius-sm); z-index: 10; }

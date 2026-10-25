@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<section class="hero">
+  <p class="eyebrow">매일 아침 커피 시장 브리핑</p>
+  <h1 class="hero-title">{{ site.title }}</h1>
+  <div class="hero-lead">{{ content }}</div>
+</section>
+
+<section class="post-list" aria-label="브리핑 목록">
+  {%- for post in site.posts -%}
+  <article class="post-card">
+    <a class="post-card-link" href="{{ post.url | relative_url }}">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+      <h2 class="post-card-title">{{ post.title }}</h2>
+      {%- if post.concept %}
+      <p class="post-card-concept">
+        <span class="concept-label">오늘의 기초 지식</span>
+        <span class="concept-name">{{ post.concept }}</span>
+        {% include stage-badge.html stage=post.stage %}
+      </p>
+      {%- endif %}
+    </a>
+  </article>
+  {%- else -%}
+  <p class="empty">아직 올라온 브리핑이 없습니다.</p>
+  {%- endfor -%}
+</section>

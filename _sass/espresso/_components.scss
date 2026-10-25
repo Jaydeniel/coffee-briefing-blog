@@ -1,0 +1,38 @@
+// 구성 요소: 첫 화면, 글 목록 카드, 단계 표시, 칩, 글 머리, 이전·다음
+.hero { margin-bottom: var(--sp-7); }
+.hero-title { font-size: var(--fs-h1); font-weight: 800; letter-spacing: -0.03em; }
+.hero-lead { color: var(--c-roast); margin-top: var(--sp-3); }
+.hero-lead p { margin: 0; }
+
+.post-list { display: grid; gap: var(--sp-4); }
+.post-card { background: var(--c-paper); border: 1px solid var(--c-line); border-radius: var(--radius); box-shadow: var(--shadow-card); transition: border-color .15s, transform .15s; }
+.post-card:hover { border-color: var(--c-crema); transform: translateY(-1px); }
+.post-card-link { display: block; padding: var(--sp-5); text-decoration: none; color: inherit; }
+.post-card-title { font-size: 1.15rem; font-weight: 700; margin: var(--sp-1) 0 var(--sp-3); }
+.post-card-concept { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin: 0; font-size: var(--fs-sm); }
+.concept-label { color: var(--c-muted); }
+.concept-name { color: var(--c-espresso); font-weight: 700; }
+.empty { color: var(--c-muted); }
+
+// 창업 단계 표시 (Notion 색 의미와 같음)
+.stage { display: inline-block; padding: 2px var(--sp-2); border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; line-height: 1.6; }
+.stage-franchise { color: var(--c-stage-franchise); background: var(--c-stage-franchise-bg); }
+.stage-indie { color: var(--c-stage-indie); background: var(--c-stage-indie-bg); }
+.stage-common { color: var(--c-stage-common); background: var(--c-stage-common-bg); }
+
+.post-header { margin-bottom: var(--sp-6); padding-bottom: var(--sp-5); border-bottom: 1px solid var(--c-line); }
+.post-title { font-size: var(--fs-h1); font-weight: 800; letter-spacing: -0.03em; }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin-top: var(--sp-4); }
+.concept-chip { background: var(--c-espresso); color: var(--c-milk); font-size: var(--fs-xs); font-weight: 700; padding: 2px var(--sp-3); border-radius: var(--radius-pill); line-height: 1.6; }
+.tag { color: var(--c-muted); font-size: var(--fs-xs); }
+
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-top: var(--sp-8); }
+.post-nav a { display: block; padding: var(--sp-4); border: 1px solid var(--c-line); border-radius: var(--radius); background: var(--c-paper); text-decoration: none; font-weight: 600; font-size: var(--fs-sm); }
+.post-nav a span { display: block; color: var(--c-muted); font-weight: 400; font-size: var(--fs-xs); margin-bottom: var(--sp-1); }
+.post-nav-next { grid-column: 2; text-align: right; }
+
+@media (max-width: 600px) {
+  .post-card-link { padding: var(--sp-4); }
+  .post-nav { grid-template-columns: 1fr; }
+  .post-nav-next { grid-column: 1; text-align: left; }
+}

@@ -1,0 +1,45 @@
+// Espresso Vibe 디자인 값 (DESIGN.md 참고). 색·글꼴·간격은 여기서만 바꾼다.
+:root {
+  // 커피 팔레트
+  --c-espresso: #3b2418;   // 브랜드, 제목
+  --c-roast: #5a3a28;      // 강조 텍스트, 링크 hover
+  --c-crema: #c08a56;      // 포인트 (링크 밑줄, 마크)
+  --c-crema-soft: #f3e6d6; // 강조 배경
+  --c-milk: #fbf7f1;       // 페이지 바탕
+  --c-paper: #ffffff;      // 카드 바탕
+  --c-ink: #2a211c;        // 본문
+  --c-muted: #7a6a5e;      // 날짜, 보조 텍스트
+  --c-line: #e8dccd;       // 구분선, 테두리
+
+  // 창업 단계 (Notion 📰 아침 브리핑 DB와 같은 색 의미)
+  --c-stage-franchise: #c8691c;     // 저가 프랜차이즈
+  --c-stage-franchise-bg: #fbeadb;
+  --c-stage-indie: #2f7d4f;         // 개인 카페
+  --c-stage-indie-bg: #e3f1e8;
+  --c-stage-common: #6f665e;        // 공통
+  --c-stage-common-bg: #eeeae6;
+
+  // 글꼴
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-base: 17px;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.78rem;
+  --fs-h1: clamp(1.7rem, 1.2rem + 2vw, 2.4rem);
+  --fs-h2: 1.35rem;
+  --fs-h3: 1.1rem;
+  --lh-body: 1.78;
+  --lh-tight: 1.35;
+
+  // 간격 (4px 배수)
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+
+  // 형태
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(59, 36, 24, 0.06), 0 4px 16px rgba(59, 36, 24, 0.05);
+  --width-content: 720px;
+  --width-wide: 960px;
+}

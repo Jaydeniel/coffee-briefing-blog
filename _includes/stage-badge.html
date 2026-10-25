@@ -1,0 +1,9 @@
+{%- comment -%} 사용: {% include stage-badge.html stage=page.stage %} {%- endcomment -%}
+{%- if include.stage -%}
+{%- case include.stage -%}
+{%- when '저가 프랜차이즈' -%}{%- assign stage_class = 'stage-franchise' -%}
+{%- when '개인 카페' -%}{%- assign stage_class = 'stage-indie' -%}
+{%- else -%}{%- assign stage_class = 'stage-common' -%}
+{%- endcase -%}
+<span class="stage {{ stage_class }}">{{ include.stage }}</span>
+{%- endif -%}

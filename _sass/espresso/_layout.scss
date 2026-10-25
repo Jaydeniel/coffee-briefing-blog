@@ -1,0 +1,35 @@
+// 틀: 폭, 머리글, 바닥글
+.wrap { max-width: var(--width-content); margin: 0 auto; padding: 0 var(--sp-5); }
+.site-main { padding: var(--sp-7) 0 var(--sp-8); min-height: 60vh; }
+
+.site-header {
+  background: var(--c-paper);
+  border-bottom: 1px solid var(--c-line);
+  position: sticky; top: 0; z-index: 5;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand { display: inline-flex; align-items: center; gap: var(--sp-2); text-decoration: none; color: var(--c-espresso); }
+.brand-name { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+// 에스프레소 잔을 위에서 본 모양: 짙은 커피 + 크레마 테두리
+.brand-mark {
+  display: inline-block; width: 18px; height: 18px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--c-espresso) 0 52%, var(--c-crema) 53% 72%, var(--c-espresso) 73% 100%);
+  flex: none;
+}
+.site-nav { display: flex; gap: var(--sp-5); }
+.site-nav a { color: var(--c-muted); text-decoration: none; font-size: var(--fs-sm); font-weight: 600; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--c-espresso); }
+
+.site-footer { border-top: 1px solid var(--c-line); padding: var(--sp-6) 0 var(--sp-7); color: var(--c-muted); font-size: var(--fs-sm); }
+.site-footer p { margin: 0 0 var(--sp-2); }
+.footer-brand { display: flex; align-items: center; gap: var(--sp-2); color: var(--c-espresso); font-weight: 800; }
+.footer-meta a { color: var(--c-muted); }
+
+.page-header { margin-bottom: var(--sp-6); }
+.page-title { font-size: var(--fs-h1); }
+
+@media (max-width: 600px) {
+  :root { --fs-base: 16px; }
+  .wrap { padding: 0 var(--sp-4); }
+  .site-main { padding-top: var(--sp-6); }
+}

@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <p class="eyebrow"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time></p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {%- if page.concept or page.tags.size > 0 %}
+    <div class="post-meta">
+      {%- if page.concept %}<span class="concept-chip">기초 지식 · {{ page.concept }}</span>{% endif %}
+      {% include stage-badge.html stage=page.stage %}
+      {%- for t in page.tags %}<span class="tag">#{{ t }}</span>{% endfor -%}
+    </div>
+    {%- endif %}
+  </header>
+
+  <div class="prose post-body">
+    {{ content }}
+  </div>
+
+  {%- if page.previous or page.next %}
+  <nav class="post-nav" aria-label="이전·다음 브리핑">
+    {%- if page.previous %}<a class="post-nav-prev" href="{{ page.previous.url | relative_url }}"><span>이전 브리핑</span>{{ page.previous.title }}</a>{% endif -%}
+    {%- if page.next %}<a class="post-nav-next" href="{{ page.next.url | relative_url }}"><span>다음 브리핑</span>{{ page.next.title }}</a>{% endif -%}
+  </nav>
+  {%- endif %}
+</article>
