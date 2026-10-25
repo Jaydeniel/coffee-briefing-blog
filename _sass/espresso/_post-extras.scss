@@ -79,3 +79,35 @@
 .keyword-group ul { list-style: none; padding: 0; margin: var(--space-2) 0 0; }
 .keyword-group li { display: flex; gap: var(--space-4); padding: var(--space-1) 0; }
 .keyword-group li time { flex: none; }
+
+// 좁은 화면 떠 있는 목차 버튼과 아래에서 올라오는 목록 (티스토리 모바일 스킨 방식, 본인 요청)
+// Annual Report 규칙: 그림자·둥근 모서리 없이 ink 테두리 선으로만 띄운다
+.toc-fab {
+  position: fixed; right: var(--space-4); bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px)); z-index: 20;
+  appearance: none; cursor: pointer; font: inherit; font-size: var(--fs-label); font-weight: 600;
+  color: var(--ink); background: var(--surface); border: 1px solid var(--ink); padding: var(--space-2) var(--space-4);
+  opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .2s, transform .2s;
+}
+.toc-fab.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+.toc-fab:hover, .toc-fab[aria-expanded="true"] { background: var(--ink); color: var(--surface); }
+
+.toc-sheet { position: fixed; inset: 0; z-index: 30; }
+.toc-sheet[hidden] { display: none; }
+.toc-sheet-backdrop { position: absolute; inset: 0; background: rgba(14, 42, 34, 0.4); }
+.toc-sheet-panel {
+  position: absolute; left: 0; right: 0; bottom: 0; max-height: 70vh; overflow-y: auto;
+  background: var(--surface); border-top: var(--rule-strong);
+  padding: var(--space-4) var(--space-4) calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+}
+.toc-sheet-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-3); border-bottom: var(--rule-hairline); }
+.toc-sheet-head p { margin: 0; font-size: var(--fs-note); font-weight: 600; color: var(--evergreen); }
+.toc-sheet-close { appearance: none; background: none; border: 0; padding: var(--space-1) 0; cursor: pointer; font: inherit; font-size: var(--fs-label); color: var(--muted); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+.toc-sheet ol { list-style: none; margin: 0; padding: 0; }
+.toc-sheet li { border-bottom: var(--rule-hairline); }
+.toc-sheet a { display: block; padding: var(--space-3) 0; font-size: var(--fs-body); color: var(--ink); text-decoration: none; }
+.toc-sheet a.is-current { color: var(--evergreen); font-weight: 600; }
+html.sheet-open { overflow: hidden; }
+
+@media (min-width: 1240px) {
+  .toc-fab, .toc-sheet { display: none !important; }
+}

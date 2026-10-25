@@ -100,19 +100,69 @@
     });
   });
 
-  // 5) 섹션 바로가기: 지금 읽는 섹션 표시
-  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.post-toc a'));
+  // 5) 좁은 화면(1240px 미만): 떠 있는 "목차" 버튼 + 아래에서 올라오는 섹션 목록
+  var toc = document.querySelector('.post-toc');
+  var fab = null, sheet = null;
+  if (toc) {
+    fab = document.createElement('button');
+    fab.type = 'button';
+    fab.className = 'toc-fab';
+    fab.textContent = '목차';
+    fab.setAttribute('aria-haspopup', 'dialog');
+    fab.setAttribute('aria-expanded', 'false');
+    fab.setAttribute('aria-controls', 'toc-sheet');
+
+    sheet = document.createElement('div');
+    sheet.className = 'toc-sheet';
+    sheet.id = 'toc-sheet';
+    sheet.hidden = true;
+    sheet.innerHTML =
+      '<div class="toc-sheet-backdrop" data-close></div>' +
+      '<div class="toc-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="toc-sheet-title">' +
+        '<div class="toc-sheet-head"><p id="toc-sheet-title">이 글에서</p>' +
+        '<button type="button" class="toc-sheet-close" data-close>닫기</button></div>' +
+      '</div>';
+    var list = toc.querySelector('ol').cloneNode(true);
+    sheet.querySelector('.toc-sheet-panel').appendChild(list);
+    document.body.appendChild(fab);
+    document.body.appendChild(sheet);
+
+    var openSheet = function () {
+      sheet.hidden = false;
+      document.documentElement.classList.add('sheet-open');
+      fab.setAttribute('aria-expanded', 'true');
+      var first = sheet.querySelector('a.is-current') || sheet.querySelector('a');
+      if (first) first.focus();
+    };
+    var closeSheet = function (returnFocus) {
+      sheet.hidden = true;
+      document.documentElement.classList.remove('sheet-open');
+      fab.setAttribute('aria-expanded', 'false');
+      if (returnFocus) fab.focus();
+    };
+    fab.addEventListener('click', openSheet);
+    sheet.addEventListener('click', function (e) {
+      if (e.target.closest('[data-close]')) closeSheet(true);
+      else if (e.target.closest('a')) closeSheet(false); // 앵커 이동은 그대로 일어난다
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !sheet.hidden) closeSheet(true);
+    });
+  }
+
+  // 6) 지금 읽는 섹션 표시 (고정 목차·한 줄 목차·떠 있는 목록 모두)
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.post-toc a, .toc-sheet a'));
   if (tocLinks.length && 'IntersectionObserver' in window) {
     var byId = {};
-    tocLinks.forEach(function (a) { byId[decodeURIComponent(a.getAttribute('href').slice(1))] = a; });
-    var current = null;
+    tocLinks.forEach(function (a) {
+      var id = decodeURIComponent(a.getAttribute('href').slice(1));
+      (byId[id] = byId[id] || []).push(a);
+    });
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var id = e.target.id;
-        if (current) current.classList.remove('is-current');
-        current = byId[id];
-        if (current) current.classList.add('is-current');
+        tocLinks.forEach(function (a) { a.classList.remove('is-current'); a.removeAttribute('aria-current'); });
+        (byId[e.target.id] || []).forEach(function (a) { a.classList.add('is-current'); a.setAttribute('aria-current', 'true'); });
       });
     }, { rootMargin: '-80px 0px -70% 0px' });
     Object.keys(byId).forEach(function (id) {
@@ -121,16 +171,15 @@
     });
   }
 
-  // 6) 넓은 화면 고정 목차는 커버를 지난 뒤에만 보인다
+  // 7) 넓은 화면 고정 목차와 좁은 화면 목차 버튼은 커버를 지난 뒤에만 보인다
   var cover = document.querySelector('.post-cover.has-photo');
-  var toc = document.querySelector('.post-toc');
-  if (toc) {
-    if (cover && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        toc.classList.toggle('is-visible', !es[0].isIntersecting);
-      }, { rootMargin: '-60px 0px 0px 0px' }).observe(cover);
-    } else {
-      toc.classList.add('is-visible');
-    }
+  var setVisible = function (v) {
+    if (toc) toc.classList.toggle('is-visible', v);
+    if (fab) fab.classList.toggle('is-visible', v);
+  };
+  if (cover && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { setVisible(!es[0].isIntersecting); }, { rootMargin: '-60px 0px 0px 0px' }).observe(cover);
+  } else {
+    setVisible(true);
   }
 })();
