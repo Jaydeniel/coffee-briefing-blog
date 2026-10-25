@@ -32,9 +32,9 @@
 | Cover + GiantYear | 홈 표지: 사이트명(evergreen 소형) → "커피 시장 브리핑 [연도]" → 스탠드퍼스트 → gold 키라인 → 아래에서 잘린 거대 연도 | `_layouts/home.html`, `_components.scss` |
 | (본인 요청, 결정 0023) | 홈 "커피 시장 지표" 카드: 거시 / 국내 커피 산업 두 묶음, 1px 선으로 나눈 카드(그림자·둥근 모서리 없음), 세리프 큰 숫자, 증감 evergreen+부호, 막대(기록 3개 이상), 기준 시점·출처. 데스크톱 3열·휴대폰 2열. Annual Report의 KPI 카드 그리드 금지에 대한 예외(처음엔 GlanceRow 줄 구성). 제목은 2026-10-26 "오늘의 커피 지표"에서 바꿨다(매일 바뀌는 지표가 시세 2개뿐이라) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
 | PageFurniture | 글 러닝 헤더 "커피 시장 브리핑 [연도]"(muted) + "아침 브리핑"(evergreen 600), 글 끝 노트(muted) | `_layouts/post.html` |
-| PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 오늘의 기초 지식 = 두 단(왼쪽 룰·표시·개념, 오른쪽 문단) | `_post-sections.scss` |
-| SummaryTable | 다가오는 일정, 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |
-| (목록) | 글 목록: 카드 대신 rule로 나눈 줄(날짜 · 세리프 제목 · 기초 지식) | `_layouts/home.html` |
+| PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 커피 지식(이전 글: 오늘의 기초 지식) = 두 단(왼쪽 룰·표시·분야·개념, 오른쪽 문단) | `_post-sections.scss` |
+| SummaryTable | 이달의 국내 커피 이벤트(이전 글: 다가오는 일정), 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |
+| (목록) | 글 목록: 카드 대신 rule로 나눈 줄(날짜 · 세리프 제목 · 커피 지식) | `_layouts/home.html` |
 | (브런치 커버, 본인 요청) | 글 머리 커버 사진: 화면 폭을 채운 사진 위에 러닝 헤더·제목·정보를 흰 글자로, 아래로 짙어지는 ink 막, 오른쪽 아래 사진 출처. 사진은 front matter `cover`(+`cover_credit`·`cover_credit_url`·`cover_position`) 우선, 없으면 `_data/covers.yml`에서 날짜로 순환 | `_layouts/post.html`, `_post-extras.scss`, `_data/covers.yml` |
 | PageFurniture 응용 | 러닝 헤더 "아침 브리핑 #N"(연재 번호), 글 머리 "읽는 시간 N분"(본문 500자/분) | `_layouts/post.html` |
 | (벤치마킹) | 섹션 바로가기: 머리 아래 한 줄 목차, 1240px 이상은 왼쪽 여백 고정 + 읽는 섹션 evergreen (커버를 지난 뒤에만) | `_layouts/post.html`, `_post-extras.scss`, `post.js` |
@@ -58,7 +58,7 @@
 6. 러닝 헤더·노트는 웹에 페이지 번호가 없어 번호는 뺐다.
 
 ## 동작 방식 (그대로)
-- `post.html`이 본문을 `<h2>` 단위로 잘라 섹션 종류(한 줄 / 기초 지식 / 일정 / 소식)를 고른다. `post.js`는 출처·팁 이름표·일정 날짜 칸만 더한다(없어도 읽힘).
+- `post.html`이 본문을 `<h2>` 단위로 잘라 섹션 종류(한 줄 / 커피 지식 / 이벤트 / 소식)를 고른다. 2026-10-26부터 글 섹션은 오늘의 한 줄 · 국내 동향 및 이슈 · 글로벌 동향 및 이슈 · 커피 지식: <개념> · 이달의 국내 커피 이벤트(원두·원가 섹션 없음, 원두 가격은 홈 지표 카드). front matter `field`(전문 지식 | 창업·운영)가 있으면 커피 지식 표시 옆에 보인다. `post.js`는 출처·팁 이름표·일정 날짜 칸만 더한다(없어도 읽힘).
 - 대시보드 데이터 `_data/metrics.json`은 private 저장소 `blog/push_metrics.py`가 매일 만든다. 손으로 고치지 않는다.
 - 스타일·스크립트 주소에 `?v=site.time`을 붙여 배포 직후 캐시 문제를 막는다.
 

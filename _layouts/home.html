@@ -27,7 +27,7 @@ layout: default
         <div>
           <h3 class="post-row-title">{{ post.title }}</h3>
           {%- if post.concept %}
-          <p class="post-row-meta">오늘의 기초 지식 <b>{{ post.concept }}</b>{% if post.stage %} · {% include stage-badge.html stage=post.stage %}{% endif %}</p>
+          <p class="post-row-meta">{% if post.field %}커피 지식{% else %}오늘의 기초 지식{% endif %} <b>{{ post.concept }}</b>{% if post.stage %} · {% include stage-badge.html stage=post.stage %}{% endif %}</p>
           {%- endif %}
         </div>
       </a>
