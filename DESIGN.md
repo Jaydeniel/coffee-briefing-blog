@@ -30,7 +30,7 @@
 | 원본 | 블로그 | 파일 |
 |---|---|---|
 | Cover + GiantYear | 홈 표지: 사이트명(evergreen 소형) → "커피 시장 브리핑 [연도]" → 스탠드퍼스트 → gold 키라인 → 아래에서 잘린 거대 연도 | `_layouts/home.html`, `_components.scss` |
-| (본인 요청, 결정 0023) | 홈 "오늘의 커피 지표" 카드: 거시 / 국내 커피 산업 두 묶음, 1px 선으로 나눈 카드(그림자·둥근 모서리 없음), 세리프 큰 숫자, 증감 evergreen+부호, 막대(기록 3개 이상), 기준 시점·출처. 데스크톱 3열·휴대폰 2열. Annual Report의 KPI 카드 그리드 금지에 대한 예외(처음엔 GlanceRow 줄 구성) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
+| (본인 요청, 결정 0023) | 홈 "커피 시장 지표" 카드: 거시 / 국내 커피 산업 두 묶음, 1px 선으로 나눈 카드(그림자·둥근 모서리 없음), 세리프 큰 숫자, 증감 evergreen+부호, 막대(기록 3개 이상), 기준 시점·출처. 데스크톱 3열·휴대폰 2열. Annual Report의 KPI 카드 그리드 금지에 대한 예외(처음엔 GlanceRow 줄 구성). 제목은 2026-10-26 "오늘의 커피 지표"에서 바꿨다(매일 바뀌는 지표가 시세 2개뿐이라) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
 | PageFurniture | 글 러닝 헤더 "커피 시장 브리핑 [연도]"(muted) + "아침 브리핑"(evergreen 600), 글 끝 노트(muted) | `_layouts/post.html` |
 | PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 오늘의 기초 지식 = 두 단(왼쪽 룰·표시·개념, 오른쪽 문단) | `_post-sections.scss` |
 | SummaryTable | 다가오는 일정, 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |

@@ -1,13 +1,13 @@
 {%- comment -%}
-  홈 "오늘의 커피 지표" (결정 0021·0023). 커피 소비 트렌드 대시보드 아티팩트의 지표를 카드로, 거시 / 국내 커피 산업 두 묶음.
+  홈 "커피 시장 지표" (결정 0021·0023). 커피 소비 트렌드 대시보드 아티팩트의 지표를 카드로, 거시 / 국내 커피 산업 두 묶음.
   데이터: _data/metrics.json v2 (private 저장소 blog/push_metrics.py가 매일 만든다. 손으로 고치지 않는다)
 {%- endcomment -%}
 {%- assign m = site.data.metrics -%}
 {%- if m and m.groups -%}
 <section class="dash" aria-labelledby="dash-title">
   <div class="dash-head">
-    <h2 id="dash-title">오늘의 커피 지표</h2>
-    <p class="dash-updated">갱신 <time datetime="{{ m.updated }}">{{ m.updated | replace: '-', '.' }}</time></p>
+    <h2 id="dash-title">커피 시장 지표</h2>
+    <p class="dash-updated">데이터 갱신 <time datetime="{{ m.updated }}">{{ m.updated | replace: '-', '.' }}</time></p>
   </div>
   {%- for g in m.groups -%}
   {%- if g.cards.size > 0 %}
@@ -46,7 +46,7 @@
   </div>
   {%- endif -%}
   {%- endfor %}
-  <p class="dash-note">각 출처가 밝힌 기준 시점의 값입니다. 연·월 통계는 발표가 늦어 기준 시점이 서로 다릅니다. 막대는 최근 기록(최대 5개), 마지막이 기준 시점 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
+  <p class="dash-note">원두 선물 시세는 매일, 원두 가격 지표·세계 수급·커피음료점 수는 매월, 연간 통계는 발표 달에 맞춰 분기마다 갱신합니다. 카드마다 출처가 밝힌 기준 시점이 다릅니다. 막대는 최근 기록(최대 5개), 마지막이 기준 시점 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
 </section>
 <script src="{{ '/assets/js/dashboard.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif -%}
