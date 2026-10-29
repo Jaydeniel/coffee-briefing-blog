@@ -1,5 +1,5 @@
 {%- comment -%}
-  홈 "커피 시장 지표" (결정 0021·0023). 커피 소비 트렌드 대시보드 아티팩트의 지표를 카드로, 거시 / 국내 커피 산업 두 묶음.
+  홈 "커피 시장 지표" (결정 0021·0023). 커피 소비 트렌드 대시보드 아티팩트의 지표를 카드로, 거시(세계 수급) / 원두 가격·실물 기준(원두 종류별) / 국내 커피 산업 세 묶음 (결정 0030).
   데이터: _data/metrics.json v2 (private 저장소 blog/push_metrics.py가 매일 만든다. 손으로 고치지 않는다)
 {%- endcomment -%}
 {%- assign m = site.data.metrics -%}
@@ -16,10 +16,11 @@
       <h3 id="dash-{{ g.key }}">{{ g.title }}</h3>
       <p class="note">{{ g.subtitle }}</p>
     </div>
-    <div class="dash-cards">
+    <div class="dash-cards cols-{{ g.cards.size }}">
       {%- for c in g.cards -%}
       <article class="dash-card" data-key="{{ c.key }}" data-cadence="{{ c.cadence }}" data-as-of="{{ c.as_of }}" data-history='{{ c.history | jsonify }}'>
         <header>
+          {%- if c.category %}<p class="dash-cat">{{ c.category }}</p>{% endif %}
           <h4>{{ c.name }}</h4>
           <p class="dash-market">{{ c.market }}</p>
         </header>
@@ -46,7 +47,7 @@
   </div>
   {%- endif -%}
   {%- endfor %}
-  <p class="dash-note">원두 가격은 ICO 실물 지표(I-CIP·그룹 지표)가 기준이고 선물은 방향 신호로만 봅니다. 원두 가격은 매일(ICO 포털 반영은 며칠 늦음), 세계 수급·커피음료점 수는 매월, 연간 통계는 발표 달에 맞춰 분기마다 갱신합니다. 카드마다 출처가 밝힌 기준 시점이 다릅니다. 막대는 최근 기록(최대 5개), 마지막이 기준 시점 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
+  <p class="dash-note">원두 가격은 ICO 실물 지표가격입니다. 종합(I-CIP)은 네 그룹을 가중한 값이고, 아라비카는 가공 방식에 따라 워시드(콜롬비아 마일드·기타 마일드)와 내추럴(브라질 내추럴)로, 로부스타는 따로 봅니다. 원두 가격은 매일(ICO 포털 반영은 며칠 늦음), 세계 수급·커피음료점 수는 매월, 연간 통계는 발표 달에 맞춰 분기마다 갱신합니다. 카드마다 출처가 밝힌 기준 시점이 다릅니다. 막대는 최근 기록(최대 5개), 마지막이 기준 시점 값입니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
 </section>
 <script src="{{ '/assets/js/dashboard.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif -%}

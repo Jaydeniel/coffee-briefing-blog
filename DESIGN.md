@@ -30,7 +30,7 @@
 | 원본 | 블로그 | 파일 |
 |---|---|---|
 | Cover + GiantYear | 홈 표지: 사이트명(evergreen 소형) → "커피 시장 브리핑 [연도]" → 스탠드퍼스트 → gold 키라인 → 아래에서 잘린 거대 연도 | `_layouts/home.html`, `_components.scss` |
-| (본인 요청, 결정 0023) | 홈 "커피 시장 지표" 카드: 거시 / 국내 커피 산업 두 묶음, 1px 선으로 나눈 카드(그림자·둥근 모서리 없음), 세리프 큰 숫자, 증감 evergreen+부호, 막대(기록 3개 이상), 기준 시점·출처. 데스크톱 3열·휴대폰 2열. Annual Report의 KPI 카드 그리드 금지에 대한 예외(처음엔 GlanceRow 줄 구성). 제목은 2026-10-26 "오늘의 커피 지표"에서 바꿨다(매일 바뀌는 지표가 시세 2개뿐이라) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
+| (본인 요청, 결정 0023) | 홈 "커피 시장 지표" 카드: 거시(세계 수급) / 원두 가격·실물 기준(원두 종류별) / 국내 커피 산업 세 묶음(결정 0030), 1px 선으로 나눈 카드(그림자·둥근 모서리 없음), 세리프 큰 숫자, 증감 evergreen+부호, 막대(기록 3개 이상), 기준 시점·출처. 데스크톱 3열(거시 2개는 2열, 원두 5종은 넓은 화면 5열·중간 3열)·휴대폰 2열. 원두 카드는 이름 위에 종류(종합 / 아라비카 · 워시드 / 아라비카 · 내추럴 / 로부스타)를 evergreen 작은 글자로. Annual Report의 KPI 카드 그리드 금지에 대한 예외(처음엔 GlanceRow 줄 구성). 제목은 2026-10-26 "오늘의 커피 지표"에서 바꿨다(매일 바뀌는 지표가 시세 2개뿐이라) | `_includes/dashboard.html`, `_dashboard.scss`, `assets/js/dashboard.js` |
 | PageFurniture | 글 러닝 헤더 "커피 시장 브리핑 [연도]"(muted) + "아침 브리핑"(evergreen 600), 글 끝 노트(muted) | `_layouts/post.html` |
 | PullQuote | 오늘의 한 줄 = evergreen 짧은 룰 아래 세리프 인용문 / 커피 컬럼(이전 글: 커피 지식·오늘의 기초 지식) = 두 단(왼쪽 룰·분야·제목, 오른쪽에 ### 주제마다 한 편, 편 사이 1px 선) | `_post-sections.scss` |
 | SummaryTable | 이달의 국내 커피 이벤트(이전 글: 다가오는 일정), 본문 표: 헤더 아래 ink 2px, 행 1px, 숫자 오른쪽 | `_post-sections.scss`, `_base.scss` |
@@ -44,7 +44,7 @@
 
 ## 대시보드 데이터
 - `_data/metrics.json` v2는 private 저장소의 `blog/push_metrics.py`가 매일 만든다. **손으로 고치지 않는다.** 원두 가격은 ICO 데이터 포털 일별 실물 지표(`fetch_ico.py`가 `analysis/metrics/metrics.csv`에 기록, 결정 0026), 산업 지표는 "커피 소비 트렌드" 대시보드 원본 `analysis/trend/data/`.
-- 거시 카드(2026-10-26~): I-CIP · 로부스타 실물 · 브라질 내추럴 실물 · 뉴욕 아라비카 선물(방향 신호) · 세계 소비 · 세계 생산. 실물 지표가 가격 기준이고 선물은 방향만 본다(결정 0025·0026).
+- 거시 카드(2026-10-29~, 결정 0030): 세계 소비 · 세계 생산. 원두 가격 · 실물 기준 카드: I-CIP(종합) · 콜롬비아 마일드 · 기타 마일드(아라비카 워시드) · 브라질 내추럴(아라비카 내추럴) · 로부스타. 선물은 홈에 두지 않는다(실물이 가격 기준, 결정 0025·0026).
 - 형식: `{v:2, updated, groups:[{key, title, subtitle, cards:[{key, name, market, value, digits, unit_label, as_of, period, cadence, changes:[{text,label}], extra, note, source, source_url, history:[[기준, 값]…]}]}]}`
 - 갱신 지연 기준(`dashboard.js`, cadence별): daily 7일, monthly 75일, monthly_lagged(국세청) 270일, yearly 표시 안 함.
 

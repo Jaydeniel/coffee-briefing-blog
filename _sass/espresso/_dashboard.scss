@@ -35,7 +35,14 @@
 .dash-stale { color: var(--ink); font-weight: 600; }
 .dash-note { margin: var(--space-3) 0 0; font-size: var(--fs-note); color: var(--muted); }
 
-@media (max-width: 760px) { .dash-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+// 카드 수에 맞춘 열 (결정 0030): 거시 2개는 2열, 원두 5종은 넓은 화면에서 한 줄
+.dash-cards.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dash-cards.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.dash-cards.cols-5 .dash-value .num { font-size: 26px; }
+// 원두 종류 표시: 카드 이름 위 작은 evergreen 글자
+.dash-cat { margin: 0 0 2px; font-size: 11px; font-weight: 600; color: var(--evergreen); letter-spacing: 0.02em; }
+@media (max-width: 960px) { .dash-cards.cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .dash-cards, .dash-cards.cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) {
   .dash-card { padding: var(--space-3); }
   .dash-value .num { font-size: 24px; }
