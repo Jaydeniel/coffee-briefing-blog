@@ -1,56 +1,51 @@
 ---
 layout: default
 ---
-{%- comment -%}
-  홈: 시장 개요 화면 (결정 0031). 구성은 ICO 데이터 포털 개요 페이지를 따르되 이름·로고·문구는 Espresso Vibe 것이다.
-  데이터: _data/metrics.json의 market (private 저장소 blog/push_metrics.py가 매일 만든다)
-{%- endcomment -%}
-{%- assign latest = site.posts | first -%}
-<section class="m-hero">
-  <div class="m-wrap">
-    <p class="m-eyebrow">{{ site.title }} · 커피 시장 브리핑</p>
-    <h1>오늘의 커피 시장,<br>숫자로 한눈에.</h1>
-    <div class="m-stand">{{ content }}</div>
-    {%- if latest %}
-    <a class="m-latest" href="{{ latest.url | relative_url }}"><span>최신 브리핑 · {{ latest.date | date: "%Y.%m.%d" }}</span><b>{{ latest.title }}</b></a>
-    {%- endif %}
+{%- assign year = site.time | date: '%Y' -%}
+<section class="cover">
+  <div class="cover-text">
+    <p class="cover-co">{{ site.title }}</p>
+    <h1 class="cover-title">커피 시장 브리핑 {{ year }}</h1>
+    <div class="cover-stand">{{ content }}</div>
+    <div class="keyline" aria-hidden="true"></div>
   </div>
+  <p class="giant-year" aria-hidden="true">{{ year }}</p>
 </section>
 
 <nav class="m-tabs" aria-label="화면 내 섹션">
   <div class="m-tabs-inner">
-    <a href="#overview" class="is-active">01 개요</a>
-    <a href="#prices">02 가격·선물</a>
-    <a href="#trade">03 교역</a>
-    <a href="#rankings">04 국가 순위</a>
-    <a href="#stocks">05 인증 재고</a>
-    <a href="#domestic">06 국내 산업</a>
-    <a href="#briefings">07 브리핑</a>
+    <a href="#overview" class="is-active">개요</a>
+    <a href="#prices">가격·선물</a>
+    <a href="#trade">교역</a>
+    <a href="#rankings">국가 순위</a>
+    <a href="#stocks">인증 재고</a>
+    <a href="#domestic">국내 산업</a>
+    <a href="#briefings">브리핑</a>
   </div>
 </nav>
 
 {% include market.html %}
 
-<section class="m-section" id="briefings" aria-labelledby="list-title">
-  <div class="m-wrap">
+<section id="briefings" class="m-briefings" aria-labelledby="list-title">
+  <div class="post-list-head">
     <h2 id="list-title">브리핑</h2>
-    <p class="m-lede">매일 아침 정리한 커피 시장 소식 {{ site.posts.size }}편.</p>
-    <div class="post-list">
-      {%- for post in site.posts -%}
-      <article class="post-row">
-        <a class="post-row-link" href="{{ post.url | relative_url }}">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-          <div>
-            <h3 class="post-row-title">{{ post.title }}</h3>
-            {%- if post.concept %}
-            <p class="post-row-meta">{% if post.field %}커피 컬럼{% else %}오늘의 기초 지식{% endif %} <b>{{ post.concept }}</b>{% if post.stage %} · {% include stage-badge.html stage=post.stage %}{% endif %}</p>
-            {%- endif %}
-          </div>
-        </a>
-      </article>
-      {%- else -%}
-      <p class="empty">아직 올라온 브리핑이 없습니다.</p>
-      {%- endfor -%}
-    </div>
+    <p class="note">{{ site.posts.size }}편</p>
+  </div>
+  <div class="post-list">
+    {%- for post in site.posts -%}
+    <article class="post-row">
+      <a class="post-row-link" href="{{ post.url | relative_url }}">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        <div>
+          <h3 class="post-row-title">{{ post.title }}</h3>
+          {%- if post.concept %}
+          <p class="post-row-meta">{% if post.field %}커피 컬럼{% else %}오늘의 기초 지식{% endif %} <b>{{ post.concept }}</b>{% if post.stage %} · {% include stage-badge.html stage=post.stage %}{% endif %}</p>
+          {%- endif %}
+        </div>
+      </a>
+    </article>
+    {%- else -%}
+    <p class="empty">아직 올라온 브리핑이 없습니다.</p>
+    {%- endfor -%}
   </div>
 </section>
