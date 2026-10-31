@@ -1,0 +1,9 @@
+<div class="m-kpis n-{{ include.items.size }}">
+  {%- for k in include.items %}
+  <article class="m-kpi tone-{{ k.tone }}">
+    <h3>{{ k.label }}</h3>
+    <p class="m-kpi-value">{{ k.value }}</p>
+    <p class="m-kpi-sub">{{ k.sub }}</p>
+  </article>
+  {%- endfor %}
+</div>

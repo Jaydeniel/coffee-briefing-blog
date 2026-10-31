@@ -2,6 +2,9 @@
 
 2026-10-25부터 블로그 디자인은 claude.ai 아티팩트 **"Annual Report"** 디자인 시스템(https://claude.ai/artifact/TEgpXSgSLx16BFEDf5XoiP)을 따른다. 원본은 "인쇄된 연차보고서를 슬라이드로 옮긴" 시스템이고, 여기서는 웹 블로그에 옮겼다. 원본 규칙이 우선하며, 아래 "웹으로 옮기며 바꾼 것"만 예외다. 값은 `_sass/espresso/_tokens.scss`에만 둔다(원본 토큰 이름 그대로).
 
+## 홈 예외 (결정 0031)
+홈은 ICO 데이터 포털 개요 페이지 구성을 따른 시장 개요 화면이다. `body.home-market`에서 토큰을 다시 정의해 크림 바탕·러스트·올리브·둥근 패널을 쓰며 아래 원칙의 예외다(`_market.scss`, `_includes/market*.html`, `assets/js/market.js`, Chart.js). 글 화면은 아래 규칙 그대로다. ICO 이름·로고·문구는 쓰지 않고 출처만 밝힌다.
+
 ## 원칙 (원본)
 - 흰 배경(`surface`) 위에 **선과 숫자로만** 구조를 만든다. 그림자·그라디언트·둥근 모서리·어두운 배경·3D·파이 차트 없음.
 - 강조색은 `evergreen` 하나. `gold`는 표지 키라인에만, 텍스트에 쓰지 않는다. 색면은 `surface-tint` 하나(표의 당해 열 음영).

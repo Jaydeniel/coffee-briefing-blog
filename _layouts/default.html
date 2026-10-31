@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'ko' }}">
 {%- include head.html -%}
-<body>
+<body{% if page.layout == 'home' %} class="home-market"{% endif %}>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   {%- include header.html -%}
   <main id="main" class="site-main">

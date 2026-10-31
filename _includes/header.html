@@ -1,6 +1,10 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    {%- assign tick = site.data.metrics.market.icip -%}
+    {%- if page.layout == 'home' and tick %}
+    <a class="m-ticker" href="#prices" title="{{ tick.date }} 기준"><span>I-CIP 센트/파운드</span><b>{{ tick.value }}</b><i class="t-{{ tick.dir }}" aria-hidden="true"></i></a>
+    {%- endif %}
     <nav class="site-nav" aria-label="사이트">
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>브리핑</a>
       <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>소개</a>

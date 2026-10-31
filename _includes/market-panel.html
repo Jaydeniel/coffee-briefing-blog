@@ -1,0 +1,5 @@
+<article class="m-panel{% if include.cls %} {{ include.cls }}{% endif %}">
+  <h3>{{ include.title }}</h3>
+  <p class="m-panel-sub">{{ include.sub }}</p>
+  <div class="m-chart"><canvas id="{{ include.id }}" role="img" aria-label="{{ include.title }} 차트"></canvas></div>
+</article>

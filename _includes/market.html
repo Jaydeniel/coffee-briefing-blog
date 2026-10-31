@@ -1,0 +1,97 @@
+{%- assign m = site.data.metrics.market -%}
+{%- if m -%}
+<section class="m-section" id="overview" aria-labelledby="h-overview">
+  <div class="m-wrap">
+    <h2 id="h-overview">개요</h2>
+    <p class="m-lede">커피연도(10~9월)별 세계 생산과 소비, 그리고 그 차이.</p>
+    {% include market-kpis.html items=m.kpis.overview %}
+    <div class="m-grid g-2-1">
+      {% include market-panel.html id="c-supply" title="생산 vs 소비" sub="백만 백(60kg) · 커피연도" %}
+      {% include market-panel.html id="c-balance" title="수급 차이" sub="과잉 / 부족 · 백만 백(60kg)" %}
+    </div>
+    <div class="m-grid g-1-1">
+      {% include market-panel.html id="c-icip" title="복합지표가격 (I-CIP)" sub="센트/파운드 · 일별" %}
+      <article class="m-panel">
+        <h3>수급표</h3>
+        <p class="m-panel-sub">천 백(60kg) · 커피연도</p>
+        <div class="m-table-scroll"><table class="m-table">
+          <thead><tr><th>구분</th>{% for y in m.supply_table.years %}<th>{{ y }}</th>{% endfor %}</tr></thead>
+          <tbody>{% for r in m.supply_table.rows %}<tr><th>{{ r.name }}</th>{% for c in r.cells %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+        </table></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="m-section" id="prices" aria-labelledby="h-prices">
+  <div class="m-wrap">
+    <h2 id="h-prices">가격·선물</h2>
+    <p class="m-lede">원두 종류별 실물 지표가격과 뉴욕·런던 선물. 가격 수준은 실물 지표로 보고, 선물은 방향 신호로만 봅니다.</p>
+    {% include market-kpis.html items=m.kpis.prices %}
+    <div class="m-grid g-1-1">
+      {% include market-panel.html id="c-groups" title="그룹 지표가격" sub="일별 · 센트/파운드" cls="tall" %}
+      {% include market-panel.html id="c-futures" title="뉴욕·런던 선물 vs I-CIP" sub="일별 · 센트/파운드 · 방향 신호" cls="tall" %}
+    </div>
+  </div>
+</section>
+
+<section class="m-section" id="trade" aria-labelledby="h-trade">
+  <div class="m-wrap">
+    <h2 id="h-trade">교역</h2>
+    <p class="m-lede">그룹·지역·형태별로 본 세계 커피 수출.</p>
+    <div class="m-grid g-1-1">
+      {% include market-panel.html id="c-exp-group" title="그룹별 수출 (최근 월)" sub="백만 백(60kg) · 최근 보고 월과 1년 전" %}
+      <article class="m-panel">
+        <h3>월간 수출표</h3>
+        <p class="m-panel-sub">회원국 보고 · {{ m.exports_table.month }}까지 · 천 백(60kg)</p>
+        <div class="m-table-scroll"><table class="m-table">
+          <thead><tr><th>그룹</th><th>{{ m.exports_table.prior }}</th><th>{{ m.exports_table.month }}</th><th>전년 동월</th><th>{{ m.exports_table.coffee_year }} 누적</th><th>누적 증감</th></tr></thead>
+          <tbody>{% for r in m.exports_table.rows %}<tr><th>{{ r.name }}</th><td>{{ r.prior }}</td><td>{{ r.cur }}</td><td class="t-{{ r.yoy_tone }}">{{ r.yoy }}</td><td>{{ r.ytd }}</td><td class="t-{{ r.ytd_tone }}">{{ r.ytd_pct }}</td></tr>{% endfor %}</tbody>
+        </table></div>
+        <p class="m-table-note">누적은 커피연도 시작(10월)부터입니다.</p>
+      </article>
+    </div>
+    <div class="m-grid g-1-1">
+      {% include market-panel.html id="c-exp-region" title="지역별 수출 (연간)" sub="누적 막대 · 백만 백(60kg) · 커피연도" %}
+      {% include market-panel.html id="c-exp-form" title="형태별 수출 (연간)" sub="백만 백(60kg, 생두 환산) · 커피연도" %}
+    </div>
+  </div>
+</section>
+
+<section class="m-section" id="rankings" aria-labelledby="h-rankings">
+  <div class="m-wrap">
+    <h2 id="h-rankings">국가 순위</h2>
+    <p class="m-lede">최근 보고 연도 기준 주요 생산·수입·수출국.</p>
+    <div class="m-grid g-3">
+      {% capture s1 %}백만 백(60kg) · 커피연도 {{ m.rank_year.production }}{% endcapture %}
+      {% capture s2 %}백만 백(60kg) · {{ m.rank_year.trade }}년 · 보고 수입{% endcapture %}
+      {% capture s3 %}백만 백(60kg) · {{ m.rank_year.trade }}년 · 보고 수출{% endcapture %}
+      {% include market-panel.html id="c-producers" title="생산 상위" sub=s1 cls="tall" %}
+      {% include market-panel.html id="c-importers" title="수입 상위" sub=s2 cls="tall" %}
+      {% include market-panel.html id="c-exporters" title="수출 상위" sub=s3 cls="tall" %}
+    </div>
+  </div>
+</section>
+
+<section class="m-section" id="stocks" aria-labelledby="h-stocks">
+  <div class="m-wrap">
+    <h2 id="h-stocks">인증 재고</h2>
+    <p class="m-lede">뉴욕 아라비카·런던 로부스타 선물 계약의 인도 대상이 되는 재고.</p>
+    {% include market-kpis.html items=m.kpis.stocks %}
+    <div class="m-grid">
+      {% capture s4 %}백만 백(60kg) · 월별 · {{ m.stock_range }}{% endcapture %}
+      {% include market-panel.html id="c-stocks" title="인증 재고 — 뉴욕·런던" sub=s4 %}
+    </div>
+  </div>
+</section>
+
+<script id="market-data" type="application/json">{{ m.chart | jsonify }}</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+<script src="{{ '/assets/js/market.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif -%}
+
+{% include dashboard.html %}
+
+<div class="m-wrap">
+  <p class="m-source">세계 시장 수치 출처: <a href="{{ m.source_url }}" target="_blank" rel="noopener">국제커피기구(ICO) 데이터 포털</a>, 수집 {{ m.collected | replace: '-', '.' }}. 이 페이지는 ICO의 공식 페이지가 아니며 ICO와 관계가 없습니다. 투자·거래 판단의 근거로 쓰지 마세요.</p>
+</div>
